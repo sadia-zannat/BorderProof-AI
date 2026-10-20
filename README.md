@@ -1,94 +1,68 @@
-# BorderProof AI
+# BorderProof - AI
 
-### Evidence-Consistent Financial Assistance for International Student Payments
+**Evidence-Consistent Financial Assistance for International Student Tuition Payments**
 
 **Team:** FinVeritas  
 **Competition:** 2026 Shenzhen International FinTech Competition  
 **Track:** International Track - Topic C  
-**Institution:** Daffodil International University, Bangladesh  
-**Version:** V5.5.3 - Qwen Output Limit Repair Candidate
+**Source:** https://github.com/sadia-zannat/BorderProof-AI
 
-## 1. Project Overview
+## Project Overview
 
-BorderProof AI is a financial assistance prototype designed to improve evidence consistency, decision transparency, and user control in cross-border tuition payment planning.
+BorderProof - AI is an evidence-first financial assistance prototype for international students planning tuition payments across borders. A tuition invoice, a receiving account, an exchange-rate reference and a payment authorization are separate facts. None should be accepted as proof of the others.
 
-The system integrates tuition invoice processing, structured evidence investigation, multi-currency route planning, AI-assisted financial analysis, and evidence-bound authorization controls.
+The system links them in one reviewable workflow: a student creates a tuition case, attaches invoice evidence, investigates beneficiary consistency, checks currency-planning options, reviews synthetic quotes and explicitly authorizes a local simulation. The AI assistant explains recorded evidence through read-only tools. It cannot authorize or execute payments.
 
-The prototype uses synthetic financial accounts, beneficiaries, payment quotes, and transaction records. It does not initiate real bank transfers.
+This is a **local research and demonstration prototype**, not a bank-connected product. Accounts, beneficiaries, provider quotes, transfers and receipts in the simulation are synthetic. Real payments are not supported.
 
-## 2. Core Capabilities
+## Problem and Technical Approach
 
-### Cross-Border Financial Network
+| Problem | Implemented approach |
+| --- | --- |
+| Invoice fields may be confused with independently verified payee ownership | Extract labelled fields with provenance and compare against local synthetic beneficiary data |
+| Currency reference rates may be confused with executable quotes | Separate attributed public FX references from synthetic sandbox quotes |
+| AI advice may be confused with authorization | Restrict AI tools to read-only inspection and enforce explicit user actions through the application backend |
+| Documents or quotes can change after review | Bind simulated approval to specific evidence and quote state; check expiry and consistency |
+| Payment-planning decisions lack an explanation trail | Record document digests, investigation states and simulated transaction history |
 
-- Eight supported currencies: BDT, CNY, GBP, USD, CAD, EUR, AUD, and SGD.
-- 56 directed currency planning routes.
-- Forward and reverse route selection.
-- Interactive financial network visualization.
-- Read-only public foreign exchange reference integration.
+## End-to-End Student Workflow
 
-### Document Processing and Investigation
+1. **Create the case.** Enter the origin and destination, currencies, institution and invoice amount.
+2. **Attach the invoice.** Upload a supported file and store a SHA-256 digest. Extract labelled fields where the document format permits.
+3. **Investigate.** Compare invoice fields with the current case and the local synthetic beneficiary registry. Mark mismatches and unknown external checks explicitly.
+4. **Plan the corridor.** Explore eight currencies and 56 directed planning pairs, including reverse directions. These selections do not establish payment-rail availability.
+5. **Review a synthetic quote.** Inspect simulator fees, amount, expiry and evidence linkage when the local investigation permits quoting.
+6. **Authorize and simulate.** Require a user-initiated authorization validated by backend controls before a permitted internal state transition. No external transfer takes place.
 
-- Tuition invoice upload and structured field extraction.
-- Document integrity verification using SHA-256.
-- Invoice, beneficiary, account, and payment information consistency checks.
-- Synthetic beneficiary registry matching.
-- Conflict detection and evidence-based blocking.
+A failed beneficiary match or conflicting evidence can block the synthetic workflow. A local registry match is **not** independent verification of a real bank beneficiary.
 
-### Financial Simulation
+## Main Capabilities
 
-- Synthetic payment quote generation.
-- Currency conversion and fee simulation.
-- Quote expiration checks.
-- Evidence-bound user authorization.
-- Simulated payment execution and transaction history.
-- Duplicate execution prevention.
+- **Eight-currency planning:** BDT, CNY, GBP, USD, CAD, EUR, AUD and SGD across 56 directed selections.
+- **Document vault:** Case-linked uploads, stored hashes and structured extraction for supported formats.
+- **Evidence investigation:** Case consistency checks, synthetic beneficiary matching, conflict handling and review states.
+- **Payment lab:** Sandbox providers, expiring synthetic quotes, evidence-bound user authorization and simulated transfers.
+- **AI assistant:** Local Qwen3:4b through Ollama, with read-only case, invoice, investigation, quote, approval, policy and corridor inspection tools.
+- **Security controls:** Authenticated tenant-scoped data access, evidence integrity checks, separation of AI advice from user consent and auditability.
+- **Research bench:** Internally authored synthetic cases and deterministic policy-proxy comparisons.
 
-### AI Financial Assistant
+For architecture, trust boundaries and workflow diagrams, see [System Architecture](docs/PROJECT_ARCHITECTURE.md).
 
-- Local Qwen3:4b integration through Ollama.
-- Read-only backend inspection tools.
-- Case, invoice, investigation, quote, approval, policy, and corridor inspection.
-- Tool execution provenance and evidence references.
-- Restricted financial permissions.
-- Controlled failure handling for incomplete model responses.
+## Technology Stack
 
-### BPCE Security Controls
+| Layer | Technology |
+| --- | --- |
+| Web | Next.js, React, TypeScript |
+| API | FastAPI, Python 3.12 |
+| Persistence | SQLAlchemy and SQLite for local use |
+| Local AI | Ollama with Qwen3:4b |
+| Evidence handling | SHA-256 and deterministic labelled field extraction |
+| Foreign exchange | Read-only public reference-rate integration |
+| Tests | Pytest and scripted local validation |
 
-- Evidence consistency validation.
-- User authorization separated from AI recommendations.
-- Quote and document integrity checks.
-- Authorization invalidation when relevant evidence changes.
-- Audit records and tenant-scoped access controls.
+## Local Setup (Windows)
 
-## 3. Technology Stack
-
-| Component | Technology |
-|---|---|
-| Web application | Next.js, React, TypeScript |
-| Backend API | FastAPI, Python 3.12 |
-| Database | SQLAlchemy with local SQLite |
-| Local AI | Ollama, Qwen3:4b |
-| Testing | Pytest and browser workflow tests |
-| Document processing | Structured extraction and SHA-256 |
-| Financial reference data | Read-only public FX API |
-
-## 4. System Architecture
-
-The application separates the user interface, application API, evidence validation, AI-assisted analysis, and financial simulation components.
-
-The AI assistant can inspect authorized case information but cannot independently authorize or execute financial transactions.
-
-Financial simulation is governed by backend controls and explicit user actions.
-
-## 5. Local Installation
-
-### Requirements
-
-- Python 3.12
-- Node.js and npm for the Next.js application
-- Ollama with qwen3:4b for optional local AI inference
-
-### Backend Setup
+From the repository root, install Python 3.12 dependencies:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -96,112 +70,64 @@ py -3.12 -m venv .venv
 python -m pip install -r services\api\requirements-lock.txt
 ```
 
-### Start the Local API
+Start the standalone FastAPI preview:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\run_preview.ps1
 ```
 
-Open:
+Visit `http://127.0.0.1:8000/demo` and create a local demonstration account.
 
-http://127.0.0.1:8000/demo
-
-### Run Backend Tests
+Run the backend tests:
 
 ```powershell
 python -m pytest -q services\api\tests
 ```
 
-### Optional Next.js Application
-
-From the `apps/web` directory:
+The Next.js app can be built separately from `apps/web`:
 
 ```powershell
+cd apps\web
 npm ci
 npm run typecheck
 npm run build
 npm run start
 ```
 
-The Next.js build must be checked independently for the current source revision.
+For optional real local model validation, run Ollama with `qwen3:4b`, keep the API running, and from a second terminal at the repository root execute:
 
-## 6. Verification Results
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\run_live_ollama_validation.ps1
+```
 
-### Backend Testing
+The generated runtime report must be inspected before sharing. Do not commit credentials, `.env`, private documents, SQLite databases or runtime artifacts.
 
-The latest reported Windows test execution for V5.5.3 produced:
+## Measured Validation
 
-- Passed: 149
-- Skipped: 1
-- Warnings: 1
-- Failed: 0
+Results below come from the reported Windows tests of October 20, 2026 and are not production certification.
 
-These results were observed in the local Python test environment on October 20, 2026.
+| Test | Reported observation |
+| --- | --- |
+| Backend automated tests | 149 passed, 1 skipped, 1 deprecation warning |
+| Live local Qwen requests | 9 attempted; 4 HTTP 200; 5 HTTP 502 |
+| Local financial side effects | No real transfer reported |
+| Synthetic research set | 300 authored cases; 60-case holdout |
+| Deterministic policy proxy, holdout | 5 of 48 unsafe cases accepted (10.4%); 9 of 12 legitimate cases completed (75.0%) |
 
-### Live Qwen Validation
+The model's HTTP 200 responses are not equivalent to correct tool choice or verified financial advice. The synthetic policy-proxy metrics are not live Qwen accuracy or real-world fraud performance.
 
-The latest local Qwen3:4b evaluation attempted nine agent scenarios.
+See [Validation and Security Scope](docs/VALIDATION_AND_SECURITY_SCOPE.md) for methodological boundaries and outstanding checks.
 
-- Total attempts: 9
-- HTTP 200 responses: 4
-- HTTP 502 responses: 5
-- Overall status: FAILED_OR_PARTIAL
+## Operational Scope
 
-Local model inference and backend integration were exercised, but reliable tool selection and complete answer generation remain unresolved.
+The implementation supports controlled local planning and synthetic financial simulations. It does not establish live bank connectivity, real account ownership, legally permitted routes, executable foreign-exchange prices, licensed payment operations or production service security. External provider availability and transaction eligibility are unknown until independently verified.
 
-### Financial Safety
+Historical development records are retained under `AUDIT/`, `docs/` and `WORK_HANDOFF.md` for traceability. Their earlier checkpoint results must not be represented as a single current release verdict. The existing `SOURCE_MANIFEST_SHA256.txt` records an earlier packaged source snapshot and may not match new documentation commits.
 
-The available local tests did not report real financial transfers. The assistant operates with read-only inspection permissions and cannot independently approve or execute payments.
+## Team
 
-### Controlled Research Evaluation
-
-The project includes 300 internally authored synthetic evaluation cases and a 60-case holdout set.
-
-The BPCE deterministic policy proxy produced:
-
-- Unsafe acceptance: 10.4%
-- Legitimate completion: 75.0%
-
-These figures represent synthetic policy-proxy evaluation, not live Qwen accuracy or real-world financial safety performance.
-
-## 7. System Scope
-
-BorderProof AI is a locally tested research and financial simulation prototype.
-
-The current implementation does not include authorized real-bank payment connectivity, verified beneficiary bank ownership, or production financial settlement.
-
-Public FX reference data is provided for information and planning, not as an executable payment quote.
-
-Live model reliability, independent security validation, and public financial deployment require additional verification.
-
-## 8. Documentation and Reproducibility
-
-The repository includes source code, setup scripts, technical documentation, security-related checks, testing resources, and historical audit records.
-
-Selected technical references:
-
-- [V5.5 Verification and Repairs](docs/V5_5_VERIFICATION_AND_REPAIRS.md)
-- [V5.5.2 Evidence-First Repair](docs/V5_5_2_EVIDENCE_FIRST_REPAIR.md)
-- [V5.5.3 Qwen Patch Verification](AUDIT/V5_5_3_QWEN_PATCH_VERIFICATION.md)
-- [Research Validity and Prior Art](AUDIT/RESEARCH_VALIDITY_AND_PRIOR_ART.md)
-
-Historical validation results refer to their respective source versions and should not be interpreted as current V5.5.3 acceptance results.
-
-## 9. Repository
-
-GitHub: https://github.com/sadia-zannat/BorderProof-AI
-
-Submission source revision: `873fd6e0ab06547ac00873d0a3c859c70e858b43`
-
-## 10. Team
-
-**FinVeritas**
-
+**FinVeritas**  
 Sadia Akter Zannat - Team Leader  
 Md. Nazrul Islam Leon - Team Member
 
-Department of Computer Science and Engineering  
-Daffodil International University, Bangladesh
-
-**Project:** BorderProof AI  
-**Competition:** 2026 Shenzhen International FinTech Competition
+**Project repository:** https://github.com/sadia-zannat/BorderProof-AI
