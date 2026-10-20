@@ -1,0 +1,4 @@
+{
+  "command": "python -m pytest -q services/api/tests",
+  "exit_code": 0
+}

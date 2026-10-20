@@ -1,0 +1,18 @@
+{
+  "kind": "REAL_LOCAL_INFERENCE_ONLY",
+  "created_at_utc": "2026-10-20T02:00:06.438479+00:00",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "requested_model": "qwen3:4b",
+  "status": "BLOCKED",
+  "results": [],
+  "limitations": [
+    "Internal authored test questions",
+    "Answer quality and factual attribution require human review",
+    "No external human peer validation",
+    "No real payments or provider sandbox calls"
+  ],
+  "error": "ConnectError: [Errno 111] Connection refused"
+}

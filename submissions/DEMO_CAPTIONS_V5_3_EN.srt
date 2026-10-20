@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:25,000
+BorderProof AI by FinVeritas.
+Internal simulation only. No real money moves.
+
+2
+00:00:25,000 --> 00:00:55,000
+Create a local account and a new tuition case.
+Identity and email remain unverified.
+
+3
+00:00:55,000 --> 00:01:30,000
+Upload a new invoice and extract its actual fields.
+Beneficiary matching uses a synthetic registry.
+
+4
+00:01:30,000 --> 00:02:05,000
+Review the exact quote and give explicit consent.
+The independent kernel rechecks execution conditions.
+
+5
+00:02:05,000 --> 00:02:30,000
+Inspect the persisted transfer and balanced ledger.
+This is an internal receipt, not bank confirmation.
+
+6
+00:02:30,000 --> 00:03:10,000
+A conflicting invoice requires clarification.
+Changed evidence invalidates prior authorization.
+
+7
+00:03:10,000 --> 00:03:40,000
+The agent has six read-only tools.
+True Qwen validation remains pending on the local laptop.
+
+8
+00:03:40,000 --> 00:04:05,000
+Research results are authored synthetic policy proxies.
+Original holdout: five unsafe acceptances out of forty-eight.
+
+9
+00:04:05,000 --> 00:04:20,000
+English, Chinese and Bangla local workflows.
+Real banking and production deployment remain unverified.

@@ -1,0 +1,23 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "packages": {
+    "fastapi": "0.149.0",
+    "SQLAlchemy": "2.1.5",
+    "uvicorn": "0.54.0",
+    "pytest": "9.1.1",
+    "hypothesis": "6.170.2",
+    "playwright": "1.64.0",
+    "pypdf": "6.10.0",
+    "pytesseract": "0.3.13",
+    "Pillow": "12.3.0",
+    "pydantic": "2.14.0"
+  },
+  "node": "v24.19.0",
+  "npm": "11.9.0",
+  "tesseract": "tesseract 5.3.4",
+  "chromium": "153.0.8010.0 (available local binary, actual Playwright run)",
+  "docker": "UNAVAILABLE",
+  "postgresql": "UNAVAILABLE",
+  "powershell": "UNAVAILABLE"
+}

@@ -1,0 +1,1259 @@
+{
+  "kind": "NATIVE_HTTP_AND_BROWSER_NO_BRIDGE",
+  "started_at": "2026-10-20T02:00:49.155777+00:00",
+  "api_cases": [
+    {
+      "id": "FRESH-GBP",
+      "case_id": "962956bf523d4fb0a47deef715fa4f17",
+      "document_sha256": "041ec65953ed3553405f9604d1bf8c76b6b87b2e3ea7a7c1f6f5be38c70c32ee",
+      "extract_http": 200,
+      "extraction": {
+        "id": "d0168ed36f2b44ed96cbcbe39eca8ba5",
+        "case_id": "962956bf523d4fb0a47deef715fa4f17",
+        "document_id": "b09b8fe5cf3d4fe9924808e7bba04aec",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "041ec65953ed3553405f9604d1bf8c76b6b87b2e3ea7a7c1f6f5be38c70c32ee",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:50.579516+00:00"
+      },
+      "investigation": {
+        "id": "702dcde4cd824668a9c0ca835ebcd586",
+        "state": "SANDBOX_FIXTURE_MATCH",
+        "document_id": "b09b8fe5cf3d4fe9924808e7bba04aec",
+        "extraction_id": "d0168ed36f2b44ed96cbcbe39eca8ba5",
+        "evidence_hash": "041ec65953ed3553405f9604d1bf8c76b6b87b2e3ea7a7c1f6f5be38c70c32ee",
+        "beneficiary_id": "TEST-UK-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "Eligible for INTERNAL SANDBOX ONLY"
+      },
+      "transfer": {
+        "id": "ab726c9a1f4c46d7a8af2eb9ffb5e403",
+        "case_id": "962956bf523d4fb0a47deef715fa4f17",
+        "quote_id": "6d6c73d060134f1bb378988896765493",
+        "approval_id": "0f512925653c42abbb227a2bca381708",
+        "status": "COMPLETED",
+        "source_debit": "136225.17",
+        "source_currency": "BDT",
+        "target_amount": "839.15",
+        "target_currency": "GBP",
+        "provider_reference": "SIM-481CCFC1F1CD9B218F910D64",
+        "created_at": "2026-10-20T02:00:50.662805+00:00",
+        "simulator_result": {
+          "engine": "DETERMINISTIC_SANDBOX_V2",
+          "note": "No real bank or payment service was contacted.",
+          "provider_response": "SUCCESS"
+        },
+        "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+      }
+    },
+    {
+      "id": "FRESH-USD",
+      "case_id": "1d13020d98274a7999f1635709c0b11d",
+      "document_sha256": "3c28862b906e5bd254d5e491042701968858375995bcd2e8b39b5dc7c1646c88",
+      "extract_http": 200,
+      "extraction": {
+        "id": "1058e8199a32420fa308d34d8b3f3d44",
+        "case_id": "1d13020d98274a7999f1635709c0b11d",
+        "document_id": "39be93db84e2476c81d10a89a979fa4e",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "3c28862b906e5bd254d5e491042701968858375995bcd2e8b39b5dc7c1646c88",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-US-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "141.31",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC LAKEFIELD BURSAR",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "USD",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-12",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Lakefield Institute",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-1",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:50.747480+00:00"
+      },
+      "investigation": {
+        "id": "c5e375abd5d64b6cab6a48fedfd20d1c",
+        "state": "SANDBOX_FIXTURE_MATCH",
+        "document_id": "39be93db84e2476c81d10a89a979fa4e",
+        "extraction_id": "1058e8199a32420fa308d34d8b3f3d44",
+        "evidence_hash": "3c28862b906e5bd254d5e491042701968858375995bcd2e8b39b5dc7c1646c88",
+        "beneficiary_id": "TEST-US-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "Eligible for INTERNAL SANDBOX ONLY"
+      },
+      "transfer": {
+        "id": "e0cc88dc4e4b4d689d7878a589c64e55",
+        "case_id": "1d13020d98274a7999f1635709c0b11d",
+        "quote_id": "6e89fc9c3c304551b1421820d2380e1f",
+        "approval_id": "75b1acd6b0d84e748b15923011c4f822",
+        "status": "COMPLETED",
+        "source_debit": "18225.71",
+        "source_currency": "BDT",
+        "target_amount": "141.31",
+        "target_currency": "USD",
+        "provider_reference": "SIM-224C97EFCD861F1F8AF1F4AE",
+        "created_at": "2026-10-20T02:00:50.801363+00:00",
+        "simulator_result": {
+          "engine": "DETERMINISTIC_SANDBOX_V2",
+          "note": "No real bank or payment service was contacted.",
+          "provider_response": "SUCCESS"
+        },
+        "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+      }
+    },
+    {
+      "id": "FRESH-CAD",
+      "case_id": "57eefdb644e9463a8a7139b23b9b87a3",
+      "document_sha256": "b1980488aceb87c5f94e3a400027cf8ff19d3199601ba6ff39b421db8497d25e",
+      "extract_http": 200,
+      "extraction": {
+        "id": "fc0072addf28408cb0bedc9cc7e586d6",
+        "case_id": "57eefdb644e9463a8a7139b23b9b87a3",
+        "document_id": "272777acdb484a7e9cdc0a5533ae9ce5",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "b1980488aceb87c5f94e3a400027cf8ff19d3199601ba6ff39b421db8497d25e",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-CA-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "538.80",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC MAPLEWOOD FEES",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "CAD",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-13",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Maplewood College",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-2",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:50.839194+00:00"
+      },
+      "investigation": {
+        "id": "383c843670d342b2a1b87e8e8a5f942e",
+        "state": "SANDBOX_FIXTURE_MATCH",
+        "document_id": "272777acdb484a7e9cdc0a5533ae9ce5",
+        "extraction_id": "fc0072addf28408cb0bedc9cc7e586d6",
+        "evidence_hash": "b1980488aceb87c5f94e3a400027cf8ff19d3199601ba6ff39b421db8497d25e",
+        "beneficiary_id": "TEST-CA-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "Eligible for INTERNAL SANDBOX ONLY"
+      },
+      "transfer": {
+        "id": "13a0b8d4b8a248f097a4fbe13ea6f802",
+        "case_id": "57eefdb644e9463a8a7139b23b9b87a3",
+        "quote_id": "796239deb72149f5b0f8d73eda7e98fe",
+        "approval_id": "ecd42417e7cc481dbb0d46cebaac4322",
+        "status": "COMPLETED",
+        "source_debit": "49969.17",
+        "source_currency": "BDT",
+        "target_amount": "538.80",
+        "target_currency": "CAD",
+        "provider_reference": "SIM-ADF61BE127FD325AB6CEE318",
+        "created_at": "2026-10-20T02:00:50.879361+00:00",
+        "simulator_result": {
+          "engine": "DETERMINISTIC_SANDBOX_V2",
+          "note": "No real bank or payment service was contacted.",
+          "provider_response": "SUCCESS"
+        },
+        "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+      }
+    },
+    {
+      "id": "FRESH-MISSING",
+      "case_id": "a7bea07cfbb543a993e64ed0822f1898",
+      "document_sha256": "dcaee96c9c178ea0aaa0d19e80cf2ca4d30db1139ae58e0415023c3ea607cac4",
+      "extract_http": 200,
+      "extraction": {
+        "id": "1956f8bfb1714b6084f6d720b66ee46e",
+        "case_id": "a7bea07cfbb543a993e64ed0822f1898",
+        "document_id": "ddc3537ac0a14d9bb7ce3d7d1ad2e778",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "dcaee96c9c178ea0aaa0d19e80cf2ca4d30db1139ae58e0415023c3ea607cac4",
+        "fields": {
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [
+          "MISSING_ACCOUNT"
+        ],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:50.921391+00:00"
+      },
+      "investigation": {
+        "id": "371270e1524345dd9300915220ab6231",
+        "state": "NEEDS_CLARIFICATION",
+        "document_id": "ddc3537ac0a14d9bb7ce3d7d1ad2e778",
+        "extraction_id": "1956f8bfb1714b6084f6d720b66ee46e",
+        "evidence_hash": "dcaee96c9c178ea0aaa0d19e80cf2ca4d30db1139ae58e0415023c3ea607cac4",
+        "beneficiary_id": null,
+        "missing_fields": [
+          "account"
+        ],
+        "conflicts": [
+          "BENEFICIARY_NOT_IN_SYNTHETIC_REGISTRY"
+        ],
+        "parser_issues": [
+          "MISSING_ACCOUNT"
+        ],
+        "clarification_questions": [
+          "Please provide or correct the account field in a new invoice.",
+          "Please resolve missing account in the source document."
+        ],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "NO_MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "No sandbox execution allowed"
+      }
+    },
+    {
+      "id": "FRESH-CONTRADICTION",
+      "case_id": "e0a44c7631f147da958ae31ea88cfe2c",
+      "document_sha256": "9d540cd96ef9d4413aed05ab680714f3a5a8b714d16bae834aa5125563f041aa",
+      "extract_http": 200,
+      "extraction": {
+        "id": "312eec7c3eb74cb8b5461804561d0220",
+        "case_id": "e0a44c7631f147da958ae31ea88cfe2c",
+        "document_id": "55f67e8fcdc14b46b32deb22585a861c",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "9d540cd96ef9d4413aed05ab680714f3a5a8b714d16bae834aa5125563f041aa",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [
+          "CONFLICTING_AMOUNT"
+        ],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:50.976942+00:00"
+      },
+      "investigation": {
+        "id": "6708b2544ba0440191fcf19a41918795",
+        "state": "NEEDS_CLARIFICATION",
+        "document_id": "55f67e8fcdc14b46b32deb22585a861c",
+        "extraction_id": "312eec7c3eb74cb8b5461804561d0220",
+        "evidence_hash": "9d540cd96ef9d4413aed05ab680714f3a5a8b714d16bae834aa5125563f041aa",
+        "beneficiary_id": "TEST-UK-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [
+          "CONFLICTING_AMOUNT"
+        ],
+        "clarification_questions": [
+          "Please resolve conflicting amount in the source document."
+        ],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "No sandbox execution allowed"
+      }
+    },
+    {
+      "id": "FRESH-MALICIOUS",
+      "case_id": "294f87aeb35b43d49d52220d79aab008",
+      "document_sha256": "e2393aaa346680c6d7d573e982c2cb43a212ec3684ea1d7fcd6cef2fd4310f43",
+      "extract_http": 200,
+      "extraction": {
+        "id": "f2b561d806504e42acc56afc80ad845b",
+        "case_id": "294f87aeb35b43d49d52220d79aab008",
+        "document_id": "edca83c6d54a49a6bb2316d3cdff2fb0",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "e2393aaa346680c6d7d573e982c2cb43a212ec3684ea1d7fcd6cef2fd4310f43",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:51.024684+00:00"
+      },
+      "investigation": {
+        "id": "daee0911f1d440479c277269ca3faba7",
+        "state": "SANDBOX_FIXTURE_MATCH",
+        "document_id": "edca83c6d54a49a6bb2316d3cdff2fb0",
+        "extraction_id": "f2b561d806504e42acc56afc80ad845b",
+        "evidence_hash": "e2393aaa346680c6d7d573e982c2cb43a212ec3684ea1d7fcd6cef2fd4310f43",
+        "beneficiary_id": "TEST-UK-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "Eligible for INTERNAL SANDBOX ONLY"
+      },
+      "quote_http": 409
+    },
+    {
+      "id": "FRESH-NEW_UNIVERSITY",
+      "case_id": "164ca4b5c945425eb2826b4d943ec1e8",
+      "document_sha256": "27261659ec5dbffa04d3283d4f8712c1193fe00a5ef834397988bdf7739cd17a",
+      "extract_http": 200,
+      "extraction": {
+        "id": "e9db7a3580e049c895132bf44724d9e5",
+        "case_id": "164ca4b5c945425eb2826b4d943ec1e8",
+        "document_id": "9c21660ac4ab4157a25b7756bdf07c34",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "27261659ec5dbffa04d3283d4f8712c1193fe00a5ef834397988bdf7739cd17a",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Unseen Science University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:51.094588+00:00"
+      },
+      "investigation": {
+        "id": "49d65fc5eda84a8c989a848548f5a53e",
+        "state": "BLOCKED",
+        "document_id": "9c21660ac4ab4157a25b7756bdf07c34",
+        "extraction_id": "e9db7a3580e049c895132bf44724d9e5",
+        "evidence_hash": "27261659ec5dbffa04d3283d4f8712c1193fe00a5ef834397988bdf7739cd17a",
+        "beneficiary_id": null,
+        "missing_fields": [],
+        "conflicts": [
+          "INSTITUTION_MISMATCH",
+          "BENEFICIARY_NOT_IN_SYNTHETIC_REGISTRY"
+        ],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "NO_MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "No sandbox execution allowed"
+      }
+    },
+    {
+      "id": "FRESH-MALFORMED",
+      "case_id": "949935c366394f8a9d7636e2e0930a11",
+      "document_sha256": "bf3d5f69ee944b94e34d1e976ce56d454a00fb3262af7fdac19871dff61d15c5",
+      "extract_http": 200,
+      "extraction": {
+        "id": "20b94afe08ce41c68d81b6ca0934df91",
+        "case_id": "949935c366394f8a9d7636e2e0930a11",
+        "document_id": "4e0b8459161b4ac7a48fd2d8eba35880",
+        "engine": "DETERMINISTIC_LABELLED_TEXT",
+        "document_hash": "bf3d5f69ee944b94e34d1e976ce56d454a00fb3262af7fdac19871dff61d15c5",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 7,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [
+          "INVALID_AMOUNT",
+          "MISSING_AMOUNT"
+        ],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:51.145847+00:00"
+      },
+      "investigation": {
+        "id": "07be476751a2475592139bdcc9ecbfeb",
+        "state": "NEEDS_CLARIFICATION",
+        "document_id": "4e0b8459161b4ac7a48fd2d8eba35880",
+        "extraction_id": "20b94afe08ce41c68d81b6ca0934df91",
+        "evidence_hash": "bf3d5f69ee944b94e34d1e976ce56d454a00fb3262af7fdac19871dff61d15c5",
+        "beneficiary_id": "TEST-UK-001",
+        "missing_fields": [
+          "amount"
+        ],
+        "conflicts": [
+          "AMOUNT_MISMATCH"
+        ],
+        "parser_issues": [
+          "INVALID_AMOUNT",
+          "MISSING_AMOUNT"
+        ],
+        "clarification_questions": [
+          "Please provide or correct the amount field in a new invoice.",
+          "Please resolve invalid amount in the source document.",
+          "Please resolve missing amount in the source document."
+        ],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "No sandbox execution allowed"
+      }
+    },
+    {
+      "id": "FRESH-PDF-2P",
+      "case_id": "146a70540cc8477e9ad709736159b95a",
+      "document_sha256": "b5f203d89c300272e7aef94bbaa234c1c24a02517dc4f1863ad3c3d947657476",
+      "extract_http": 200,
+      "extraction": {
+        "id": "47fff393f6b2488797b3bd826ac09b68",
+        "case_id": "146a70540cc8477e9ad709736159b95a",
+        "document_id": "297c278e1403471c8d65dad7d434f0b9",
+        "engine": "PYPDF_TEXT_ONLY",
+        "document_hash": "b5f203d89c300272e7aef94bbaa234c1c24a02517dc4f1863ad3c3d947657476",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 9,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 5,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 8,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 7,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 3,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 10,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:51.321285+00:00"
+      },
+      "investigation": {
+        "id": "6e025a7215b94010b3a50122cfead47b",
+        "state": "SANDBOX_FIXTURE_MATCH",
+        "document_id": "297c278e1403471c8d65dad7d434f0b9",
+        "extraction_id": "47fff393f6b2488797b3bd826ac09b68",
+        "evidence_hash": "b5f203d89c300272e7aef94bbaa234c1c24a02517dc4f1863ad3c3d947657476",
+        "beneficiary_id": "TEST-UK-001",
+        "missing_fields": [],
+        "conflicts": [],
+        "parser_issues": [],
+        "clarification_questions": [],
+        "checks": [
+          {
+            "check": "Uploaded invoice fields",
+            "source": "UNVERIFIED_USER_DOCUMENT",
+            "result": "PARSED_NOT_AUTHENTICATED"
+          },
+          {
+            "check": "Beneficiary matches demo registry",
+            "source": "LOCAL_SYNTHETIC_FIXTURE",
+            "result": "MATCH"
+          },
+          {
+            "check": "Real provider/corridor eligibility",
+            "source": "NONE",
+            "result": "UNKNOWN_REQUIRES_REAL_WORLD_REVIEW"
+          }
+        ],
+        "tool_trace": [
+          "load_extraction",
+          "compare_case",
+          "lookup_local_synthetic_registry",
+          "check_critical_fields"
+        ],
+        "reasoning_mode": "BOUNDED_DETERMINISTIC_NON_LLM",
+        "conclusion": "Eligible for INTERNAL SANDBOX ONLY"
+      },
+      "transfer": {
+        "id": "504058968066414c81b715df389bff64",
+        "case_id": "146a70540cc8477e9ad709736159b95a",
+        "quote_id": "f924969a75a14f489649b6a2c4432dd9",
+        "approval_id": "c1d51ac416e046d29761a2c464041efc",
+        "status": "COMPLETED",
+        "source_debit": "136225.17",
+        "source_currency": "BDT",
+        "target_amount": "839.15",
+        "target_currency": "GBP",
+        "provider_reference": "SIM-B8257F3B41FC8A3F884F2AA6",
+        "created_at": "2026-10-20T02:00:51.374470+00:00",
+        "simulator_result": {
+          "engine": "DETERMINISTIC_SANDBOX_V2",
+          "note": "No real bank or payment service was contacted.",
+          "provider_response": "SUCCESS"
+        },
+        "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+      }
+    },
+    {
+      "id": "FRESH-SCAN",
+      "case_id": "1e329a388c364a7ebd7b41232982c437",
+      "document_sha256": "2423083972607655553498fff6b95da1a00f3cf0bb3d5c3e63c8c8429ede2792",
+      "extract_http": 200,
+      "extraction": {
+        "id": "dceb629b15b34f9cb23f7fb3325f1c69",
+        "case_id": "1e329a388c364a7ebd7b41232982c437",
+        "document_id": "64d8a10bfb104d2bb233ecd81f5a02d7",
+        "engine": "TESSERACT_LOCAL_OCR_UNVERIFIED",
+        "document_hash": "2423083972607655553498fff6b95da1a00f3cf0bb3d5c3e63c8c8429ede2792",
+        "fields": {
+          "account": {
+            "confidence": 0.95,
+            "line": 14,
+            "source": "document_text",
+            "value": "SYNTH-GB-001",
+            "verified": false
+          },
+          "amount": {
+            "confidence": 0.95,
+            "line": 8,
+            "source": "document_text",
+            "value": "839.15",
+            "verified": false
+          },
+          "beneficiary": {
+            "confidence": 0.85,
+            "line": 12,
+            "source": "document_text",
+            "value": "SYNTHETIC NORTHBRIDGE TUITION",
+            "verified": false
+          },
+          "currency": {
+            "confidence": 0.95,
+            "line": 6,
+            "source": "document_text",
+            "value": "GBP",
+            "verified": false
+          },
+          "deadline": {
+            "confidence": 0.95,
+            "line": 10,
+            "source": "document_text",
+            "value": "2027-03-11",
+            "verified": false
+          },
+          "institution": {
+            "confidence": 0.85,
+            "line": 2,
+            "source": "document_text",
+            "value": "SYNTHETIC Northbridge University",
+            "verified": false
+          },
+          "invoice_id": {
+            "confidence": 0.95,
+            "line": 4,
+            "source": "document_text",
+            "value": "FRESH-2026102002-0",
+            "verified": false
+          },
+          "student": {
+            "confidence": 0.95,
+            "line": 16,
+            "source": "document_text",
+            "value": "Synthetic Evaluation Student",
+            "verified": false
+          }
+        },
+        "issues": [],
+        "source_class": "USER_UPLOADED_UNVERIFIED",
+        "created_at": "2026-10-20T02:00:51.833440+00:00"
+      },
+      "state": "REAL_LOCAL_OCR_UNVERIFIED"
+    }
+  ],
+  "browser": [],
+  "network": [],
+  "failures": [],
+  "model_inference": "NOT_REQUESTED_EXCEPT_REAL_UNAVAILABLE_NEGATIVE_PROBE",
+  "unavailable_model": {
+    "http_status": 503,
+    "detail": "Local Ollama unavailable or returned an invalid response. Start Ollama and pull the configured model."
+  },
+  "public_fx": {
+    "http_status": 200,
+    "response": {
+      "status": "REFERENCE_ONLY",
+      "base": "EUR",
+      "date": "2026-10-19",
+      "rates": {
+        "AUD": "1.6068",
+        "BRL": "5.6633",
+        "CAD": "1.5798",
+        "CHF": "0.9261",
+        "CNY": "7.4991",
+        "CZK": "24.343",
+        "DKK": "7.4747",
+        "GBP": "0.84205",
+        "HKD": "8.8097",
+        "HUF": "363.4",
+        "IDR": "20253.16",
+        "ILS": "3.489",
+        "INR": "106.559",
+        "ISK": "136.4",
+        "JPY": "177.63",
+        "KRW": "1492.35",
+        "MXN": "20.7481",
+        "MYR": "4.5826",
+        "NOK": "10.5555",
+        "NZD": "1.9792",
+        "PHP": "70.715",
+        "PLN": "4.3713",
+        "RON": "5.3264",
+        "SEK": "11.104",
+        "SGD": "1.4357",
+        "THB": "37.665",
+        "TRY": "55.6227",
+        "USD": "1.1225",
+        "ZAR": "18.4469"
+      },
+      "source_url": "https://api.frankfurter.dev/v1/latest?base=EUR",
+      "retrieved_at_utc": "2026-10-20T02:00:51.899054+00:00",
+      "published_effective_date": "2026-10-19",
+      "response_sha256": "a09b5a1e4bd62583fc058140e6d930d8bba28b7ae8c32c2f5fe1c291f5ade4fe",
+      "cache_status": "FRESH_HTTP_RESPONSE_NO_APP_CACHE",
+      "fallback_used": false,
+      "precision": "Provider decimal representation retained as strings; daily reference, not executable pricing",
+      "source": "Frankfurter v1 / ECB daily published reference data",
+      "use_limits": "Public reference only. Provider software license does not establish ownership of underlying rate data; see source terms.",
+      "terms_url": "https://frankfurter.dev/",
+      "verified_execution_quote": false
+    }
+  },
+  "restart_persistence": {
+    "verified": true,
+    "completed_transfers": 4,
+    "balance": "2659354.78"
+  },
+  "db_evidence": {
+    "transfers": [
+      [
+        "COMPLETED",
+        4
+      ]
+    ],
+    "ledger_entries": 8,
+    "ledger_sum": "0.00",
+    "accounts": [
+      [
+        "2659354.78",
+        "BDT"
+      ]
+    ],
+    "audit_events": 54
+  },
+  "status": "PASS",
+  "finished_at": "2026-10-20T02:00:59.109713+00:00"
+}

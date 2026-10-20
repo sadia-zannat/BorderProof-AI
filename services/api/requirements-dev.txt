@@ -1,0 +1,8 @@
+-r requirements.txt
+# Optional V3 property-based tests. Do not require this for local demo runtime.
+hypothesis>=6.100,<7
+
+# Browser and fresh PDF fixture verification
+playwright>=1.56,<2
+requests>=2.32,<3
+reportlab>=4.0,<5

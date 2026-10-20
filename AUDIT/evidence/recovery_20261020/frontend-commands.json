@@ -1,0 +1,45 @@
+[
+  {
+    "check": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/workspace/scratch/b8babccc5586/recovery_20261020/clean/FinVeritas_BorderProof_AI_V5_3_Work_Audited/apps/web",
+    "returncode": 0,
+    "elapsed_seconds": 5.51
+  },
+  {
+    "check": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/workspace/scratch/b8babccc5586/recovery_20261020/clean/FinVeritas_BorderProof_AI_V5_3_Work_Audited/apps/web",
+    "returncode": 0,
+    "elapsed_seconds": 5.754
+  },
+  {
+    "check": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/workspace/scratch/b8babccc5586/recovery_20261020/clean/FinVeritas_BorderProof_AI_V5_3_Work_Audited/apps/web",
+    "returncode": 0,
+    "elapsed_seconds": 13.894
+  },
+  {
+    "check": "locale-parity",
+    "command": [
+      "node",
+      "scripts/check_all_locales.cjs"
+    ],
+    "cwd": "/workspace/scratch/b8babccc5586/recovery_20261020/clean/FinVeritas_BorderProof_AI_V5_3_Work_Audited",
+    "returncode": 0,
+    "elapsed_seconds": 0.441
+  }
+]

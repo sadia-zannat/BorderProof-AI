@@ -1,0 +1,24 @@
+{
+  "report_date": "2026-10-20",
+  "release": "V5.5 limited local verification checkpoint",
+  "original_input_zip": "FinVeritas_BorderProof_AI_V5_4_Bidirectional_Network(2).zip",
+  "original_input_sha256": "57ca3059382c0e6842e9dab61ad3b171604dfdf9f813d515504c06d1b6aa4005",
+  "candidate_sha256": "bd83742d3bde66ef3f4e0d9d04ea083c93d8cb5bdff225ff9cfb82d8dc39bf4f",
+  "candidate_verified_manifest_entries": 732,
+  "candidate_unique_archive_members": 733,
+  "candidate_crc": "PASS",
+  "candidate_safe_paths": "PASS",
+  "candidate_all_manifest_hashes": "PASS",
+  "clean_extracted_backend_tests": "139 passed, 1 optional skipped; exit 0",
+  "clean_extracted_browser_regressions": "6 passed; exit 0; HTTP-bridged Chromium, not native Next",
+  "new_security_regressions": "2 tests added, 12 network suite passed",
+  "repaired_source": "services/api/app/network.py",
+  "unchanged_financial_execution_policy": "no real bank connections or actual payments",
+  "unverified": [
+    "Next.js typecheck/lint/build/npm install EAI_AGAIN",
+    "live Qwen inference",
+    "live FX provider connectivity",
+    "cloud storage/PostgreSQL/Render deployment",
+    "real bank compliance, provider settlement and bank ownership"
+  ]
+}

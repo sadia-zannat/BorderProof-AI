@@ -1,0 +1,1 @@
+The presentation builder records the Work authoring recipe and requires the provided @oai/artifact-tool runtime and presentation validation skill. It is not an application dependency. The editable final PPTX is included. Application and benchmark verification use the listed npm/Python packages.

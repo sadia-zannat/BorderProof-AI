@@ -1,0 +1,11 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.32,<1
+SQLAlchemy>=2.0,<3
+pydantic>=2.9,<3
+argon2-cffi>=23.1,<26
+python-multipart>=0.0.20,<1
+httpx[socks]>=0.27,<1
+pytest>=8,<10
+pypdf>=5,<7
+Pillow>=10,<13
+pytesseract>=0.3.10,<1

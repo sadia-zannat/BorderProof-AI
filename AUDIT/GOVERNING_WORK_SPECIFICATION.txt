@@ -1,0 +1,271 @@
+# FINVERITAS — BORDERPROOF AI
+# MASTER WORK PROMPT: V5.2 INDEPENDENT EXECUTION AUDIT, REPAIR, REAL-AGENT VALIDATION, RELEASE AND RENDER READINESS
+
+You are ChatGPT Work acting as a coordinated team of principal full-stack engineers, a FinTech security architect, LLM/tool-use engineers, a QA/red-team lead, a research-methodology reviewer, a product designer, and a deployment engineer.
+
+THIS IS AN IMPLEMENTATION JOB, NOT JUST A CODE REVIEW OR DEVELOPMENT PLAN.
+
+I am attaching **BorderProof_AI_V5_2_Premium_UI.zip**, the CURRENT and authoritative complete cumulative source of FinVeritas — BorderProof AI. Do not restart from V5, V5.1, screenshots, generated descriptions or a fresh template. Preserve the complete V5.2 tree and genuinely working features, including both the Next.js application and the standalone `/demo` preview. Make actual improvements in a separate extracted working copy, run genuine tests, and give me a new FULL project ZIP.
+
+I may also attach official International Track rules (DOCX/PDF), prior audit instructions and competition materials. Treat the actual latest ZIP as the source of truth for existing implementation; treat official rules as authoritative for competition requirements, noting conflicts rather than silently assuming. Previous verification reports and dashboard numbers are CLAIMS TO RE-TEST, not evidence to accept uncritically.
+
+**First action: extract the uploaded V5.2 ZIP, verify SHA-256/archive integrity, inspect the real source/tests/docs and start baseline execution. Do not respond with only a roadmap.**
+
+## 0. Mission and non-negotiable boundaries
+
+Project: BorderProof AI — Evidence-Consistent Autonomous Financial Assistance for International Student Payments.
+Team: FinVeritas.
+Competition: 8th Shenzhen International FinTech Competition 2026 / WeBank FinTech University Student Challenge.
+Track: International Artificial Intelligence; Topic C — Cross-border & Student Finance Assistant; theme: AI as a Financial Participant.
+Judging dimensions from supplied International Track rules: 40% task completion, 30% security/compliance, 30% innovation/interaction. Recheck dates and deliverables in the uploaded official documents. User-supplied rules specify October 20, 2026, 23:59 Beijing time = 21:59 Bangladesh time, for both registration and project submission; flag any contradictory official versions. Never claim organizer submission, approval, endorsement or finalist status unless proved.
+
+**Absolute constraints:**
+1. Preserve existing functioning V1→V5.2 functionality, premium minimal product interface, useful 3D identity, BPCE, user roles, multi-language support, evidence/research, documented synthetic simulator and local Ollama integration. No silent feature removal or wholesale rewrite.
+2. **ZERO-COST FIRST:** prefer existing open-source/local tools and free public data. Do not require buying API credits, paid hosting, commercial verification, special private licenses or paid reviewer services. Do not promise that third-party bank verification can be obtained free. If an optional external provider requires credentials, put it behind an adapter and accurately mark BLOCKED.
+3. **NO PRODUCTION MONEY MOVEMENT.** Do not initiate real transfers, live payment actions, bank account changes or refunds. Use explicitly labeled internal simulation and, only if I later supply authorized genuine sandbox credentials, real *provider sandbox* operations. There must be no path from the normal demo to real money.
+4. **NO EXTERNAL PUBLICATION WITHOUT MY APPROVAL:** no GitHub push, no Render deployment, no posting videos, no official competition submission, no organizer email, no spending and no publishing private artifacts. Prepare deployment files and step-by-step guides only.
+5. **NO FAKE SUCCESS:** never fabricate API responses, quotes, receipts, transaction IDs, timestamps, charts, research data, screenshots, provider connections, security assessments, or benchmark statistics. Every VERIFIED claim requires actual code execution and saved evidence.
+6. A test that mocks the LLM is a **unit/contract test**, never a live model test. A synthetic bank registry is not bank-verified ownership. A simulated ledger operation is genuine *internal software execution*, not a bank transfer. A static screenshot is not E2E evidence. A TypeScript syntax parse is not `next build`.
+7. If a critical financial or security invariant fails and cannot be repaired, mark the release **NOT RELEASE READY**. Still deliver the latest safe source and a precise blocking report; do not invent completion.
+
+## 1. Known current state — verify, do not assume
+
+The uploaded V5.2 contains, subject to your audit:
+- `apps/preview/`: standalone FastAPI-served `/demo` UI, which the user has actually run in Windows Chrome at `127.0.0.1:8000/demo`.
+- `apps/web/`: Next.js App Router, TypeScript, React and Three.js frontend; production build has **not** previously been independently proved.
+- `services/api/`: FastAPI financial/auth/BPCE/agent routes, persistent database, internal transaction simulator, test suite.
+- `services/api/app/local_agent.py` and `agent_routes.py`: Ollama `/api/chat` tool-use loop with six server-authorized **READ-ONLY** financial investigation tools and persisted conversations. Never let agent output grant authorization or call payment execution directly.
+- `benchmarks/stupay_integritybench/`: approximately 300 *project-authored synthetic* scenarios and deterministic policy-proxy results; prior artifacts are NOT independently labeled human validation or real LLM baselines.
+- `benchmarks/run_real_ollama_eval.py`: local live-model runner, which still needs to be run and checked against genuine local Qwen inference.
+- `docs/V5_2_PREMIUM_UI_AUDIT.md` and `docs/UPGRADE_V5_2_WINDOWS_BANGLA.md`.
+- Root `.env.example`, Docker configuration, slides and earlier submissions. Some documentation still contains V5/V5.1 version wording; fix material inconsistencies while keeping historical changelogs.
+
+The user has **already installed Ollama 0.40.6 and `qwen3:4b` on her own Windows laptop**; a screenshot of `ollama run qwen3:4b` answering a question verifies the *local model itself*, NOT its integration with BorderProof. Python 3.12.10 works. The user has already run V5.1 FastAPI and opened the `/demo` landing/login in Chrome. Their local project path was `C:\BorderProof_AI\BorderProof_AI_V5_1_Free_Agent`; the new V5.2 Work build will be separate.
+
+**Critical execution boundary:** Work's cloud machine cannot access `http://127.0.0.1:11434` on the user's laptop. Do not pretend that it can. In Work, attempt genuine LLM inference only if an actual model runtime is available to your environment or the user explicitly authorizes a legitimate remote free endpoint. Do not tunnel/expose the user's local Ollama to the public Internet. Otherwise, write and verify a Windows `run_live_ollama_validation.ps1` and integration test harness, with specific expected inputs, API/network checks, trace capture and outcome classification; mark live integration **PENDING USER-LOCAL VERIFICATION**. Do not label a full agent benchmark VERIFIED until actual inference results/logs from a real Qwen call are obtained. Do not request that the user reveal private API keys in chat.
+
+## 2. Mandatory REAL EXECUTION — no visually simulated success
+
+Use these as release-gate requirements for every claimed feature:
+
+A. **Fresh real inputs:** Generate or gather fresh, newly authored, privacy-safe supported invoices that were NOT in the repository, with varying amounts/currencies/university references, incomplete/contradictory fields, multi-page PDF, optional scans/images if OCR is supported, and malicious instructions. Upload via the actual UI/API, inspect stored bytes/hash, perform actual parsing and field extraction, record uncertainty and clarification questions. The software must not recognize only a memorized sample. Never use real passports or private student bank documents in tests.
+
+B. **Real agent inference:** Authenticate, select a student's case, send genuinely new questions, run live `qwen3:4b` model calls where reachable, observe authorized tool selection and real tool outputs, handle unavailable model/timeouts/malformed tool responses, record model name/source, timestamp and sanitized trace. Never mislabel a prerecorded answer or deterministic response as live AI. Read-only financial tool calls are acceptable autonomous investigation; explicitly state current autonomy boundaries.
+
+C. **Real-world data:** Find and use lawful, public financial reference sources where feasible: Frankfurter/ECB published FX reference rates, official university payment webpages/instructions, World Bank remittance reference datasets and, where relevant, Bangladesh Bank's publicly accessible source material. Record URL, retrieval time, publication/effective date, currency, precision, license/use limits and cached/fallback status. REAL FX REFERENCE RATE ≠ EXECUTABLE PAYMENT QUOTE. A public university webpage ≠ VERIFIED BANK BENEFICIARY. Unsupported/unavailable live requests must visibly say UNKNOWN/UNAVAILABLE/REQUIRES REVIEW. No fake institution ownership or country eligibility claims.
+
+D. **Real persisted backend operations:** Authentication, authorization, case creation, document upload, extraction, evidence checks, quoting, BPCE, user approval, payment simulation, status transitions, ledger postings, idempotency and receipts must operate through the actual FastAPI app and database. Reopen database after restart; reconcile balances and history. Use Decimal/minor-unit-safe monetary arithmetic.
+
+E. **Optional genuine provider sandbox:** Investigate current Wise Sandbox V2 / Airwallex sandbox docs and access requirements. With actual, authorized credentials and allowed access, implement and test genuine sandbox requests/response IDs without real money. **Without access, DO NOT invent a response or pretend provider connection; retain a tested adapter interface and declare BLOCKED BY EXTERNAL CREDENTIALS.** Do not confuse self-created simulated provider names with real external providers.
+
+F. **Truthful UI:** No hardcoded green 'success' based on route navigation. Every financial success/failure/block/risk indicator, chart, receipt, quote and audit export must be computed from real backend state or clearly flagged as `SYNTHETIC TEST DATA` or `REFERENCE`. Fake testimonials/rating metrics/fraud savings are prohibited. A short `SIMULATED — NO REAL PAYMENTS` reminder stays visible at the appropriate transaction points.
+
+G. **Unscripted browser E2E:** Exercise fresh never-seen-before supported invoices and newly created accounts/cases in an actual browser, from upload through backend through DB, including both success and fail-closed paths. Take genuine running-app screenshots, network/status logs and database evidence. Run across desktop/mobile and EN/zh-CN/bn-BD.
+
+H. **Failure must stay failure:** Malicious invoice text, changed recipient, altered amount, new document version, expired/stale quote, replayed approval, missing role, cross-tenant query, duplicate idempotency key, concurrent retries, provider timeout/crash, forged provider response and disabled Ollama must return accurate failure/review/unavailable statuses—not a fabricated successful flow. Record representative negative traces.
+
+I. **Reproducible measurement:** All benchmark numbers, confusion matrices, execution rates, throughput, latency, costs and comparisons must come from scripts run against known scenario IDs, models and settings. Separate deterministic policy tests, mocked LLM unit tests, real LLM E2E tests and human/external review. No inferred or invented metrics.
+
+## 3. First: baseline audit and top-priority repairs
+
+1. Save the original uploaded ZIP untouched. Extract copy; inspect file manifest, file sizes, source integrity, dependencies, lockfiles, env vars, migrations, runtime/default configs, documentation and all relevant local resources.
+2. Run initial backend pytest, optional Hypothesis (install free dependencies if possible), frontend lint/TypeScript semantic check/production build, DB migration, native app startup, Docker (if available), browser suite and locale parity. Record PASS/FAIL/SKIP/BLOCKED with exact commands, versions, logs, runtimes.
+3. Check repository for credentials, accidental PII, secrets in generated files, insecure demo defaults, root git history, hardcoded successes, unreachable links and unexplained sample numbers.
+4. Maintain a prioritized issue matrix (P0 critical security/functional, P1 genuine agent/evidence/research, P2 design refinements). Fix actual issues in code before building extra features. Re-run affected tests, and preserve known-good prior modules.
+5. Do not silently fix tests by relaxing their assertions or replacing real execution with mocks. Tests must assert safety and financial correctness rather than just status HTTP 200.
+
+## 4. Full product functional audit — 45 original modules
+
+Audit and preserve all of the following against source and UI, with statuses VERIFIED WORKING / IMPLEMENTED NOT VERIFIED / PARTIAL / EXTERNALLY BLOCKED / NOT IMPLEMENTED:
+
+Student: (1) Landing, (2) Sign up/Secure login, (3) Dashboard, (4) Student profile, (5) AI Financial Copilot, (6) Tuition Document Vault, (7) University Verification, (8) Beneficiary Verification, (9) Multicurrency, (10) FX & Fee Comparison, (11) Payment Route Planner, (12) Compliance Navigator, (13) Decision Planner, (14) Approval Center, (15) Secure Sandbox Payments, (16) Payment Tracking, (17) Receipts/Evidence, (18) Alerts, (19) Refund/Dispute Guidance, (20) Settings.
+
+Backend: (21) Intent Understanding, (22) Dependency-Aware Planner, (23) Financial Tool Router, (24) Document Intelligence, (25) Evidence Retrieval, (26) Provenance Graph, (27) BPCE, (28) Quote Validity, (29) Country Policy, (30) Risk Engine, (31) Authorization, (32) Execution State Machine, (33) Independent Verification Layer, (34) Audit Trail, (35) Recovery/Reconciliation.
+
+Admin/research: (36) Reviewer Console, (37) Compliance Workbench, (38) Graph Explorer, (39) Transaction Audit Explorer, (40) Fraud Investigation, (41) Attack Simulation Lab, (42) Evaluation Dashboard, (43) Baseline Comparison, (44) Model/Tool Observability, (45) Admin Console.
+
+Do not classify a module VERIFIED because its heading/button exists. Every page, tab, search, uploader, filter, modal, card action, navigation and visible control must be actually connected, or explicitly labeled unavailable. Preserve finance/access-control context in every view.
+
+## 5. Security: the financial safety kernel MUST be independent of the LLM
+
+Exercise real code and persisted DB constraints to confirm:
+- Only authenticated, authorized users can inspect their own cases, quotes, documents and agent history; reviewer/admin/auditor role boundaries enforced server-side.
+- Sensitive cross-user/tenant data is unreachable through path IDs, pagination, search, exports or tools. Sessions, CSRF, cookies, CORS, uploads and rate limits are appropriate for deployment target.
+- Explicit transaction-specific consent bound to a canonical versioned intent; recipient, amount, currency, provider, source evidence and quote cannot change without invalidation/reapproval.
+- Quote expiry, document change, suspicious beneficiary, unverified critical evidence and unknown corridor policy fail closed. Approval tokens are single-use/replay-resistant where applicable.
+- Concurrent requests/idempotency collisions do not double debit/transfer. State-machine transitions, ledger balances and decimal/currency rounding remain consistent. Timeouts and unknown statuses never turn into success.
+- Document/invoice text and web pages are *untrusted data*, cannot override instructions or tools. Unknown/privileged model-tool names rejected by server. Any model output is advisory, NEVER the source of consent or execution authority.
+- Provider response spoofing, forged success, injected quote and stale tool output are detected or honestly reported as unresolved.
+- Audit-event chain validates tampering where implemented; do not overclaim tamper-proofing without external anchoring.
+- Uploaded malicious/oversized/unexpected files fail safely; file storage is access-controlled. Do not leak credentials, private data or source documents through traces/UI.
+
+Add strong security negative tests, property-based tests (if available), concurrent/idempotency tests, and traceable failure evidence. Include threat model, severity, status and residual gaps.
+
+## 6. Real autonomous financial agent — free local-first
+
+Keep Qwen3 4B + Ollama as the primary no-API-cost local inference mode. Inspect and improve the existing bounded tool-calling loop without breaking authorization boundaries. Confirm tool schemas/arguments, tenant scoping, nonempty real tool results, context management, injection isolation, provenance references, retries, call limits, stopping conditions, hallucination handling, clarifying questions, recoverable errors and conversation persistence.
+
+An appropriate legitimate end-to-end journey:
+(a) authenticated student provides a new request/invoice;
+(b) parser extracts available facts and uncertainty;
+(c) agent chooses permitted read-only investigation tools using REAL model inference;
+(d) checks quote/reference/evidence and asks follow-up if needed;
+(e) produces an evidence-linked, explainable plan;
+(f) STUDENT—not LLM—initiates specific approval;
+(g) BPCE independently rechecks everything;
+(h) internal sandbox executes only if all checks pass;
+(i) persisted status, ledger and receipt are shown;
+(j) changed evidence or unauthorized actions fail closed.
+
+The agent must NEVER secretly pay, approve, alter payee or bypass BPCE. Do not manufacture sophisticated-sounding 'reasoning' from a deterministic response. When Ollama is unavailable, show a useful actionable error and keep the rest of the application functional.
+
+In addition to mocked unit tests, make a **separate REAL LIVE MODEL evaluation script** that measures success/tool correctness/unsafe attempted calls, wall-clock latency and tool trace for *actual local Qwen3 calls*. Ensure a nontechnical Windows user can run it. If Work cannot access Ollama, provide exact instructions and the results upload path; do NOT convert test mocks into fabricated LLM metrics.
+
+## 7. Research/prior art/benchmarks — credible and honest
+
+Review relevant ORIGINAL publications, protocols and repositories, verify links, dates and scopes before citing:
+- Agent payment protocols: https://arxiv.org/abs/2609.00060
+- Autonomous-agent security SoK: https://arxiv.org/abs/2604.15367
+- AgentDojo: https://arxiv.org/abs/2406.13352
+- InjecAgent: https://aclanthology.org/2024.findings-acl.624/
+- Google AP2: https://github.com/google-agentic-commerce/AP2
+- Visa Trusted Agent Protocol: https://github.com/visa/trusted-agent-protocol
+- FinanceBench: https://github.com/patronus-ai/financebench
+- FinRobot: https://github.com/AI4Finance-Foundation/FinRobot
+- FinGPT: https://github.com/AI4Finance-Foundation/FinGPT
+- Bank/payment and dataset references already listed in the repository.
+
+Prepare a referenced prior-art matrix separating standard methods (signatures, mandate binding, idempotency, agent safety) from novel validated results and student-domain adaptation. Never label BPCE fundamentally novel just because it combines known controls. Do not say you read a full paper if only abstract was accessible.
+
+Audit StuPay-IntegrityBench's 300 original synthetic cases, 60 holdout split, labels, seeds, leakage and deterministic proxy baselines. Reproduce prior metrics rather than copying them. Create ADDITIONAL diverse, previously unseen, not-optimized-on test cases; separate train/dev/holdout. If original labels were authored by the team, call them team-authored synthetic labels. New evaluation by Work is critical technical review but **not independent external human peer validation**. An 'AP2-inspired' rule proxy is NOT AP2 implementation. An LLM baseline requires actual model inference, identical test inputs and shared hardware/config disclosure.
+
+Run: standard agent, tool-use without BPCE (isolated offline evaluator ONLY), deterministic approval baseline, full system, and meaningful ablations if genuinely implemented. NEVER switch off financial safety in normal deployed app for comparison. Output raw case IDs/results, confusion matrices, false approval, false block, tool-use correctness, evidence attribution, P50/P95 latency, error bars if meaningful, and known limitations. Unsupported metrics must say NOT MEASURED.
+
+## 8. Premium minimal UI — preserve the V5.2 design philosophy
+
+The user explicitly rejected long technical paragraphs on landing/login/dashboard and repetitive V1/V2/V3 internal engineering copy. Do not regress to documentation-as-UI. Keep BOTH Next.js and `/demo` visually and behaviorally coherent, with Next.js production readiness prioritized. Retain original logo, midnight navy/teal/blue visual identity, 3D globe/evidence displays and responsive mobile experience.
+
+Desired content:
+- Landing: short high-trust headline, one concise subtitle, primary Get Started CTA, elegant interactive globe/corridor visualization.
+- Login: simply Sign in, Email, Password, Sign in action; necessary inline errors.
+- Dashboard: task cards, actual metrics from backend, charts, quick actions.
+- AI agent: ChatGPT-like conversation composer, case context, authentic tool activity (expandable), model state/unavailability; NO fake assistant responses.
+- Payment Lab: clear step-by-step flow, fee/currency/payment details, risk and approval state, human consent, receipt.
+- Evidence, BPCE, Research: functional graphs/charts, failed controls, traceability, replay and expandable technical details, not walls of text.
+- Public pages should NOT show logged-in workspace sidebar until authenticated.
+- Raw JSON/hashes/long explanations go inside optional Details/Inspect/Export views, but required material financial risk and simulation warnings remain prominent.
+
+Check WebGL fallback, accessibility, keyboard focus, color contrast, loading/error/empty states, mobile/tablet layout, reduced motion, navigation and all visual controls. Use real browser screenshots of the running app. Never create fake UI execution screenshots or hallucinated graph data.
+
+## 9. Languages
+
+Default English, additional Simplified Chinese (zh-CN) and Bangla (bn-BD). Audit navigation, all labels, statuses, login/errors, payments, approval/rejection, receipts, agent tool activity, support, audit and research. Run missing-key parity and browser locale-switch checks. Preserve financial numeric precision across locale formatting. English submission materials.
+
+## 10. Database + Render readiness — PREPARE ONLY, NO DEPLOYMENT
+
+Validate actual persistence architecture, database migration and user/role isolation. Existing local SQLite is fine for private reproducible demo; do not equate it with deployable production PostgreSQL.
+
+Prepare an executable/testable PostgreSQL migration strategy, storage adapter and Render configuration WHEN FREE FEASIBLE, clearly separating DONE from PLANNED and noting free-tier limitations (cold starts, ephemeral filesystem, storage restrictions, database expiration, instance availability and quota). Review *current* official Render docs and free-tier policy instead of relying on stale assumptions.
+
+Prefer a simple reliable deployment architecture over unverified multi-service complexity. A split Next.js+FastAPI configuration is fine if actually built/tested; otherwise describe a demonstrated viable configuration and remaining blockers. Include:
+- verified frontend production build/typecheck/lint; Node version and lockfile consistency
+- backend bind to `0.0.0.0:$PORT`, correct health checks and CORS/cookies/proxy headers
+- PostgreSQL-compatible migrations/transaction operations if implemented and tested
+- secure storage for uploaded documents; never rely on ephemeral disk for durable production files
+- no demo credentials/secrets in production source; environment-only configuration
+- `render.yaml` only with supported blueprint syntax, Dockerfiles/compose when usable
+- comprehensive docs for manual Render deployment, post-deploy tests and rollback
+- acknowledge cloud Render **cannot use Windows Ollama `localhost`**. On Render, agent mode must honestly report disabled/not configured unless a user-authorized remotely reachable model exists; never imply a free Render CPU instance runs Qwen3 with reliable performance.
+
+**DO NOT push any repo, do not connect Render, do not deploy, do not spend, do not trigger external financial actions.**
+
+Useful primary docs: https://render.com/docs/deploy-nextjs-app , https://render.com/docs/deploy-fastapi , https://render.com/docs/blueprint-spec , https://render.com/docs/monorepo-support .
+
+## 11. Competition deliverables grounded in tested build
+
+Update the submission folder only AFTER code and actual measurements:
+- honest 10-minute maximum English editable PowerPoint (with speaker notes, actual screenshots/results)
+- maximum 5-minute English demo narration, screen-by-screen user clicks and captions
+- actual redacted simulation traces/receipts/audit IDs; use only tested outputs
+- evidence-linked architecture and BPCE algorithm report
+- prompt-injection/security assessment, permissions, threat model, known vulnerabilities
+- research prior art, benchmark methodology/raw results/model and dataset cards, honest claims/limitations
+- README and Windows local setup/testing guide in **simple step-by-step Bangla** for the user
+- clear instructions for producing full real demo video; existing old silent clip is not a finished narrated submission video
+- source licenses/dependency attribution and submission checklist
+- no claims of verified bank partner, live production payment, independent external review or official registration.
+
+## 12. Work session strategy and mandatory checkpoints
+
+Work sessions may disconnect. Keep recoverable source archives, test logs and clear handoffs.
+
+CHECKPOINT A — BASELINE: original archive preserved, extracted source, audit inventory, baseline test results, P0/P1/P2 issue matrix.
+CHECKPOINT B — CORE REPAIRS: auth, DB, financial safety, new-invoice parsing, API and agent/tool-control bugs fixed, retested.
+CHECKPOINT C — INTEGRATED PRODUCT: Next.js production attempt, real API/browser workflows, multilingual premium UI, research/benchmark testing, Render readiness configuration.
+CHECKPOINT D — CLEAN RELEASE: clean extraction, actual tests, full ZIP, manifest/checksum, submission materials and candid release verdict.
+
+After each checkpoint: write `WORK_PROGRESS.md`, update `WORK_HANDOFF.md`, save changed files/logs, list exact remaining work and, where possible, create downloadable full-source checkpoint archive. Never discard the previous stable version. Resume from latest verifiable checkpoint after interruptions; ask for that checkpoint ZIP only if inaccessible.
+
+## 13. Final clean-room acceptance tests
+
+Extract the completed full project into a NEW clean directory; install deps; run executable tests and log exact commands and results:
+1. Backend unit/integration/security tests; optional property testing.
+2. Actual FastAPI startup/login/logout/session/CSRF/roles.
+3. NEW fresh document upload + parsing + clarification + provenance; scan/OCR if implemented, otherwise truthful unsupported response.
+4. Successful actual internal simulator workflow from NEW case and correct transaction-state/ledger/receipt persisted across restart.
+5. Unauthorized/bad beneficiary/stale quote/changed evidence/prompt injection/concurrent duplicate/provider failure scenarios, asserting correct fail-closed status.
+6. Ollama agent mocked contract tests separately from LIVE inference (live only where real Ollama reachable), tool-trace checks and data isolation.
+7. Benchmark reproduced from actual code, held-out evaluation, raw traces, separated from real agent benchmark.
+8. EN/zh-CN/bn-BD key and browser checks.
+9. Next.js `npm ci` or justified install, `npm run typecheck`, `npm run lint`, `npm run build`, production start and browser routing with API connected.
+10. Standalone `/demo` regression and full browser E2E in desktop/mobile widths.
+11. 3D/loading/reduced-motion fallback; screenshot verification.
+12. Docker Compose / PostgreSQL / Render config validation if actually available; mark otherwise SKIPPED/BLOCKED.
+13. Source/ZIP integrity, duplicate and orphaned files, no credentials, clean extraction and startup instructions.
+
+Never count an unexecuted test as passed. Do not silently overwrite older measured results with imaginary improved scores. Report FAIL and fix; if blocked, say so.
+
+## 14. Final deliverable: complete repaired project ZIP, not advice
+
+Produce an actual ZIP named:
+**`FinVeritas_BorderProof_AI_V5_3_Work_Audited.zip`**
+
+It must contain the entire cumulative source, both frontend variants, backend, database/migrations, local Ollama read-only agent, BPCE, internal ledger, benchmarks/evaluation runner, tests, original/revised assets, 3 languages, docs, generated genuine test evidence, submission materials, Docker/Render prep as verified, `WORK_PROGRESS.md` and `WORK_HANDOFF.md`.
+
+Include these additional files prominently:
+- `AUDIT/BASELINE_AND_REPAIRS.md`
+- `AUDIT/FEATURE_STATUS_45_MODULES.md`
+- `AUDIT/REAL_EXECUTION_EVIDENCE.md`
+- `AUDIT/FINANCIAL_SECURITY_TESTS.md`
+- `AUDIT/LLM_LIVE_VS_MOCK_MATRIX.md`
+- `AUDIT/FRESH_INVOICE_TEST_CASES.md`
+- `AUDIT/RESEARCH_VALIDITY_AND_PRIOR_ART.md`
+- `AUDIT/FRONTEND_PRODUCTION_BUILD.md`
+- `AUDIT/RENDER_READINESS.md`
+- `AUDIT/KNOWN_LIMITATIONS.md`
+- `AUDIT/FINAL_RELEASE_VERDICT.md`
+- `docs/START_HERE_WINDOWS_BANGLA.md`
+- `scripts/run_live_ollama_validation.ps1` (working script; compatible with existing Windows Ollama Qwen3 setup)
+- `SOURCE_MANIFEST_SHA256.txt`
+
+Return in your final answer:
+(A) verified download link to the **new** full ZIP, exact size and SHA-256;
+(B) one compact summary of implemented repairs;
+(C) exact test totals + failures/skips/blockers, especially full Next.js build and true LIVE Qwen status;
+(D) working startup commands for Windows VS Code with Python 3.12 + local Ollama `qwen3:4b`;
+(E) remaining manually-run local-model tests and how the user shares sanitized outputs;
+(F) security/Render readiness and formal **READY FOR LOCAL DEMO / NOT RELEASE READY** assessment based on findings;
+(G) what not to claim to judges;
+(H) source-revision changelog and 3 immediate user actions.
+
+Create verified sandbox links ONLY after files actually exist. Do not name the final ZIP 'verified' unless the acceptance gates truly passed. If some gates remain blocked, still package the best honest full source with the required status matrix and clear unfinished blockers.
+
+## 15. Your first execution steps — DO THESE NOW
+
+1. Inspect the uploaded **BorderProof_AI_V5_2_Premium_UI.zip**, verify/extract it; retain original.
+2. Read existing README, original security docs, `.env.example`, backend agent/BPCE/finance code, test suite, benchmark and frontend UI; reconcile actual state.
+3. Baseline run all available tests; capture real logs and inspect failures.
+4. Fix P0 bugs, then P1 agent/evidence/invoice/benchmark gaps; keep premium minimal UI intact.
+5. Perform real unscripted functional testing and then package complete repaired project. Do not stop after generating recommendations.
+
+**BEGIN EXECUTION NOW. DO NOT DEPLOY, PUSH OR SEND ANYTHING TO AN EXTERNAL SERVICE WITHOUT MY SEPARATE EXPLICIT AUTHORIZATION.**

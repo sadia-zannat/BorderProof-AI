@@ -1,0 +1,7 @@
+'use client';
+import React, {useState} from 'react';
+import {Canvas} from '@react-three/fiber';
+import {OrbitControls, Stars} from '@react-three/drei';
+function WorldMesh(){return <group rotation={[0.16,0.2,0.1]}><mesh><sphereGeometry args={[1.65,48,36]}/><meshPhongMaterial color="#082644" transparent opacity={0.84} shininess={60}/></mesh><mesh><sphereGeometry args={[1.671,28,20]}/><meshBasicMaterial color="#40dfca" wireframe transparent opacity={0.22}/></mesh><mesh rotation={[0.4,0.55,0.2]}><torusGeometry args={[2.04,0.008,10,120]}/><meshBasicMaterial color="#62c5ff" transparent opacity={0.55}/></mesh><mesh rotation={[-0.75,-0.5,0]}><torusGeometry args={[1.85,0.007,10,100]}/><meshBasicMaterial color="#27e3c3" transparent opacity={0.5}/></mesh></group>}
+export default function Globe(){const [failed,setFailed]=useState(false);if(failed)return <div className="fallback-globe" role="img" aria-label="Stylized financial globe"><span className="fallback-ring"/></div>;
+ return <div className="globe-stage" role="img" aria-label="Interactive wireframe globe. Drag to rotate."><Canvas camera={{position:[0,0,5.7],fov:48}} onCreated={({gl})=>{if(!gl.getContext())setFailed(true)}} gl={{antialias:true,alpha:true}}><color attach="background" args={['#061a34']}/><ambientLight intensity={1.0}/><pointLight position={[3,3,4]} intensity={40} color="#77dfe4"/><WorldMesh/><Stars radius={70} depth={35} count={400} factor={2} fade speed={0.5}/><OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.28}/></Canvas></div>}

@@ -1,0 +1,83 @@
+{
+  "evidence": {
+    "schema_version": "BORDERPROOF_SYNTHETIC_EXPORT_V5",
+    "generated_at": "2026-10-20T02:05:41.174794+00:00",
+    "transfer": {
+      "id": "0905d1f174434aa8852fe6bcdc22621f",
+      "case_id": "9159d2e0bf194aa397526743d9137112",
+      "quote_id": "6dfd4c80e3664f668451874d8ca9e77e",
+      "approval_id": "5451943749a4449b811a690cac151a7c",
+      "status": "COMPLETED",
+      "source_debit": "69395.06",
+      "source_currency": "BDT",
+      "target_amount": "749.74",
+      "target_currency": "CAD",
+      "provider_reference": "SIM-59E5E2AAC9D725A69D559AEA",
+      "created_at": "2026-10-20T02:05:41.150819+00:00",
+      "simulator_result": {
+        "engine": "DETERMINISTIC_SANDBOX_V2",
+        "note": "No real bank or payment service was contacted.",
+        "provider_response": "SUCCESS"
+      },
+      "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+    },
+    "quote": {
+      "id": "6dfd4c80e3664f668451874d8ca9e77e",
+      "case_id": "9159d2e0bf194aa397526743d9137112",
+      "investigation_id": "34989fafe9404a2abae81b8f83e40628",
+      "provider": "CAMPUS_SIM_A",
+      "beneficiary_id": "TEST-CA-001",
+      "recipient": "SYNTHETIC MAPLEWOOD FEES",
+      "target_amount": "749.74",
+      "target_currency": "CAD",
+      "source_amount": "69395.06",
+      "source_currency": "BDT",
+      "rate": "91.00",
+      "fee": "1168.72",
+      "evidence_hash": "eb1e21d44a3ad6492a15b0b09578a98d1c27a20510faf5205b1cc8bd69844bd2",
+      "expires_at": "2026-10-20T02:20:41.118990+00:00",
+      "expired": false,
+      "source_class": "SYNTHETIC_INTERNAL_QUOTE_NOT_MARKET_EXECUTABLE"
+    },
+    "approval": {
+      "id": "5451943749a4449b811a690cac151a7c",
+      "status": "CONSUMED",
+      "scope_fingerprint_sha256": "337b6a92dec519ce00296a278f361681c66f6fa1fe970f6f4157fddcdd90c691"
+    },
+    "evidence_seal_sha256": "fa6f4846ff55b7af522f7353f9eb4f672b3f21fd25283961444b00cb274b0c98",
+    "document_sha256": [
+      {
+        "id": "d2e3d1dbeab046ae9dad3780875c1a66",
+        "sha256": "eb1e21d44a3ad6492a15b0b09578a98d1c27a20510faf5205b1cc8bd69844bd2"
+      }
+    ],
+    "ledger": [
+      {
+        "currency": "BDT",
+        "signed_amount": "-69395.06",
+        "account_id": "6fdcc0af3f3f4aa99981630af0367d15"
+      },
+      {
+        "currency": "BDT",
+        "signed_amount": "69395.06",
+        "account_id": "SIMULATOR_BDT_CLEARING"
+      }
+    ],
+    "local_audit_chain_valid": true,
+    "provenance": {
+      "source": "LOCAL_SYNTHETIC_DEMONSTRATION",
+      "provider_settlement_verified": false,
+      "real_payment": false,
+      "real_beneficiary_verified": false,
+      "bank_compliance_verified": false
+    },
+    "limitations": [
+      "The local SHA-256 digest is not a digital signature",
+      "Local database administrators can modify/replace records",
+      "No real financial institution confirms settlement"
+    ]
+  },
+  "evidence_sha256": "a4abaea8b5a4c6a40c693da793968ee2290068f6ff69ef8d6789937191dcb812",
+  "canonicalization": "UTF-8 JSON sort_keys compact separators, no ASCII escaping",
+  "proof_class": "SELF_HASHED_LOCAL_DATA_NOT_SIGNED_NOT_BANK_VERIFIED"
+}

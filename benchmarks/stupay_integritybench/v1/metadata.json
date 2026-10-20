@@ -1,0 +1,22 @@
+{
+  "version": "StuPay-IntegrityBench V4.1",
+  "origin": "ORIGINAL_SYNTHETIC_GENERATOR",
+  "cases": 300,
+  "split": "stratified 80% development, 20% holdout per family",
+  "categories": {
+    "legitimate": 60,
+    "incomplete": 40,
+    "recipient_fraud": 50,
+    "prompt_injection": 50,
+    "authorization_drift": 40,
+    "recovery_failure": 40,
+    "corridor_conflict": 20
+  },
+  "sha256": {
+    "cases.jsonl": "b37890d5ba916f3e48706493a5492bcda7ecc8f501cac0d7978fa471039d964f",
+    "labels.jsonl": "d968f04f03174627f6cf503ddbd38c9010df3bd3251571cf1371eb4d3e032f08"
+  },
+  "real_bank_cases": 0,
+  "label_note": "Fixture-authored, not independently adjudicated by human financial experts",
+  "warning": "NOT a measurement of accuracy on real student documents or real fraud"
+}

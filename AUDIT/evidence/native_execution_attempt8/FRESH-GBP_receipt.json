@@ -1,0 +1,83 @@
+{
+  "evidence": {
+    "schema_version": "BORDERPROOF_SYNTHETIC_EXPORT_V5",
+    "generated_at": "2026-10-19T19:53:26.584372+00:00",
+    "transfer": {
+      "id": "9fba7ac8778f46baac13d659c89aaf85",
+      "case_id": "c93ad58a025a4f6bb9303dda2382bc45",
+      "quote_id": "9b8869e3eabf4b52b12bef2601790eac",
+      "approval_id": "3048683e75e04d3d9cf36877a8b8314d",
+      "status": "COMPLETED",
+      "source_debit": "107136.24",
+      "source_currency": "BDT",
+      "target_amount": "659.50",
+      "target_currency": "GBP",
+      "provider_reference": "SIM-2CB63DB78205F6980BEEF0D2",
+      "created_at": "2026-10-19T19:53:26.554079",
+      "simulator_result": {
+        "engine": "DETERMINISTIC_SANDBOX_V2",
+        "note": "No real bank or payment service was contacted.",
+        "provider_response": "SUCCESS"
+      },
+      "mode": "INTERNAL_SANDBOX_SYNTHETIC_NO_REAL_MONEY"
+    },
+    "quote": {
+      "id": "9b8869e3eabf4b52b12bef2601790eac",
+      "case_id": "c93ad58a025a4f6bb9303dda2382bc45",
+      "investigation_id": "c0154e437ed740e085efbdaba96ec176",
+      "provider": "CAMPUS_SIM_A",
+      "beneficiary_id": "TEST-UK-001",
+      "recipient": "SYNTHETIC NORTHBRIDGE TUITION",
+      "target_amount": "659.50",
+      "target_currency": "GBP",
+      "source_amount": "107136.24",
+      "source_currency": "BDT",
+      "rate": "160.00",
+      "fee": "1616.24",
+      "evidence_hash": "0ec5e6bcb5cf7ecccbf0bde99b1cd6ebd261039936b3fc22d22bf0d82af78d1b",
+      "expires_at": "2026-10-19T20:08:26.519765",
+      "expired": false,
+      "source_class": "SYNTHETIC_INTERNAL_QUOTE_NOT_MARKET_EXECUTABLE"
+    },
+    "approval": {
+      "id": "3048683e75e04d3d9cf36877a8b8314d",
+      "status": "CONSUMED",
+      "scope_fingerprint_sha256": "ac76faeaabd3e1f07b7a864d4ee2628b2aa304296118866752dcea60ce190c66"
+    },
+    "evidence_seal_sha256": "ab5715c2643af794e51f6f2bb0b448496126daf2b81980373eda3d96c0c785ee",
+    "document_sha256": [
+      {
+        "id": "21996f2eb8f2495798d4239fd1925d0a",
+        "sha256": "0ec5e6bcb5cf7ecccbf0bde99b1cd6ebd261039936b3fc22d22bf0d82af78d1b"
+      }
+    ],
+    "ledger": [
+      {
+        "currency": "BDT",
+        "signed_amount": "-107136.24",
+        "account_id": "15b6afd8540d420c82024824927b17a5"
+      },
+      {
+        "currency": "BDT",
+        "signed_amount": "107136.24",
+        "account_id": "SIMULATOR_BDT_CLEARING"
+      }
+    ],
+    "local_audit_chain_valid": true,
+    "provenance": {
+      "source": "LOCAL_SYNTHETIC_DEMONSTRATION",
+      "provider_settlement_verified": false,
+      "real_payment": false,
+      "real_beneficiary_verified": false,
+      "bank_compliance_verified": false
+    },
+    "limitations": [
+      "The local SHA-256 digest is not a digital signature",
+      "Local database administrators can modify/replace records",
+      "No real financial institution confirms settlement"
+    ]
+  },
+  "evidence_sha256": "e67cd562193ed667dc3fa78d6f65a97d7fe57dc174d47a5d46a7c3bb0fe672e9",
+  "canonicalization": "UTF-8 JSON sort_keys compact separators, no ASCII escaping",
+  "proof_class": "SELF_HASHED_LOCAL_DATA_NOT_SIGNED_NOT_BANK_VERIFIED"
+}

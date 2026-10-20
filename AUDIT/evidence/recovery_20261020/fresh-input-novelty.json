@@ -1,0 +1,14 @@
+[
+  {
+    "run": "ocr_execution",
+    "seed": 2026102002,
+    "inputs": 10,
+    "sha256_overlap_with_pre_resume_shipped_inputs": 0
+  },
+  {
+    "run": "native_verified_execution",
+    "seed": 2026102005,
+    "inputs": 10,
+    "sha256_overlap_with_pre_resume_shipped_inputs": 0
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "candidate_crc": "PASS",
+  "safe_unique_archive_paths": "PASS",
+  "manifest_entries": 833,
+  "tested_application_files": 113,
+  "all_application_hashes_match_clean_tested_revision": true,
+  "required_deliverables_present": true,
+  "application_test_evidence": "130 backend + 6 bridge browser; native two surfaces and final receipt readback PASS",
+  "final_verification": "Candidate extracted and verified before final packaging; docs/evidence-only packaging completion note follows"
+}

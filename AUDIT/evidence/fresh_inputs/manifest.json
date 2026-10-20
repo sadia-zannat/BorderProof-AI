@@ -1,0 +1,106 @@
+{
+  "seed": 20261020,
+  "authorship": "Work-authored synthetic fixtures, no external human labels",
+  "cases": [
+    {
+      "id": "FRESH-GBP",
+      "file": "fresh_GBP.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "SANDBOX_FIXTURE_MATCH",
+      "sha256": "6bc4f6725c9ced6bbf3bfadac49d976cbaad479e379bddb05858912b6e2b930d"
+    },
+    {
+      "id": "FRESH-USD",
+      "file": "fresh_USD.txt",
+      "institution": "SYNTHETIC Lakefield Institute",
+      "destination_country": "United States",
+      "amount": "863.84",
+      "currency": "USD",
+      "expected": "SANDBOX_FIXTURE_MATCH",
+      "sha256": "a6185eeeeedc24fafcdbd4daea78513cadf9f5a077e759cc3f2f8d06d68f45f4"
+    },
+    {
+      "id": "FRESH-CAD",
+      "file": "fresh_CAD.txt",
+      "institution": "SYNTHETIC Maplewood College",
+      "destination_country": "Canada",
+      "amount": "421.28",
+      "currency": "CAD",
+      "expected": "SANDBOX_FIXTURE_MATCH",
+      "sha256": "741fc34e57e052d9c33a97f662cd2f7411322dd86a669df0ce7b0c2b6b861673"
+    },
+    {
+      "id": "FRESH-MISSING",
+      "file": "fresh_missing.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "NEEDS_CLARIFICATION",
+      "sha256": "6bc57aec452bea7f61675c9e25f47069d34ec44afd099e0b3b702cdfce06f6e2"
+    },
+    {
+      "id": "FRESH-CONTRADICTION",
+      "file": "fresh_contradiction.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "NEEDS_CLARIFICATION",
+      "sha256": "912a07a0e1897580c11d49577dc5e55e2092aa984cd4d02e8b9e328ebd3d444b"
+    },
+    {
+      "id": "FRESH-MALICIOUS",
+      "file": "fresh_malicious.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "QUOTE_BLOCKED",
+      "sha256": "98836b804e7c1d2866e1745a3c2874466cf315b1418a853ba6fd8e8de5a8ac57"
+    },
+    {
+      "id": "FRESH-NEW_UNIVERSITY",
+      "file": "fresh_new_university.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "BLOCKED",
+      "sha256": "c5ef8215bbc75dc831c34fe1008b1a93693c307a1b3253c29c05156f14685ccc"
+    },
+    {
+      "id": "FRESH-MALFORMED",
+      "file": "fresh_malformed.txt",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "NEEDS_CLARIFICATION",
+      "sha256": "6124a271ee7c37587d9074de95e0ccbae3a02ce00d4a382273c282404e488f18"
+    },
+    {
+      "id": "FRESH-PDF-2P",
+      "file": "fresh_multipage.pdf",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "SANDBOX_FIXTURE_MATCH",
+      "sha256": "38d7c6c066507f28741f5b3fae32dd234fdbab6461a7967f6238df90d305f437"
+    },
+    {
+      "id": "FRESH-SCAN",
+      "file": "fresh_scan.png",
+      "institution": "SYNTHETIC Northbridge University",
+      "destination_country": "United Kingdom",
+      "amount": "892.59",
+      "currency": "GBP",
+      "expected": "OCR_DISABLED_OR_UNVERIFIED_LOCAL_OCR",
+      "sha256": "e5b6d1afbaa2346dc2274732293fbc9868d56b31b7697c3b086e8f3c3ef11919"
+    }
+  ]
+}

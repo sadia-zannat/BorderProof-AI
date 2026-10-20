@@ -1,0 +1,5 @@
+'use client';
+import React from 'react';
+import {ResponsiveContainer,BarChart,Bar,XAxis,YAxis,Tooltip,CartesianGrid} from 'recharts';
+import type {PaymentCase} from '@/lib/api';
+export default function CaseChart({cases}:{cases:PaymentCase[]}){const data=['BDT','CNY','GBP','USD','CAD','EUR','AUD','SGD'].map(currency=>({currency,count:cases.filter(c=>c.currency===currency).length}));return <div style={{width:'100%',height:210}}><ResponsiveContainer><BarChart data={data} margin={{top:8,right:10,bottom:0,left:-24}}><CartesianGrid vertical={false} stroke="#28455c" strokeDasharray="3 6"/><XAxis dataKey="currency" tick={{fill:'#8eabc1',fontSize:12}} axisLine={false} tickLine={false}/><YAxis allowDecimals={false} tick={{fill:'#8eabc1',fontSize:11}} axisLine={false} tickLine={false}/><Tooltip contentStyle={{background:'#0b243d',border:'1px solid #30526a',borderRadius:12,color:'white'}}/><Bar dataKey="count" radius={[7,7,0,0]} fill="#42cabb" maxBarSize={62}/></BarChart></ResponsiveContainer></div>}

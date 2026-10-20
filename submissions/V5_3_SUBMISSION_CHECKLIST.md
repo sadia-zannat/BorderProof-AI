@@ -1,0 +1,11 @@
+# Submission checklist and source conflicts
+
+The two supplied English rule documents agree on Topic C, 40% task completion, 30% security/compliance, 30% innovation/interaction, teams of 2–5 and at least 60% non-Chinese nationality. Bangladesh full-time students fit the stated overseas-institution scope, subject to organizer confirmation of the actual submitted registration.
+
+Both supplied documents state **20 October 2026, 23:59 Beijing = 15:59 UTC = 21:59 Bangladesh** for registration AND project submission. The DOCX's printed 16:00 UTC and other rounded local conversions differ by a minute. The PDF uses 15:59 UTC. DOCX says late-October online review; PDF timeline labels October 20. Contact email and overseas-region wording also differ. These supplied latest files take precedence over earlier general news mentioning November 1, but Work did not contact organizers or certify the official latest version. Do not wait until the final minute.
+
+Required materials: technical architecture/core algorithm/security report, editable English presentation up to ten minutes, source with README/deployment/tests/GitHub link, security self-assessment, sandbox execution evidence. The video bullet calls a maximum-five-minute video optional while the execution-evidence bullet mentions video: treat that as an unresolved wording conflict and prepare a narrated demo. The inherited silent clip is not a completed narrated submission.
+
+Prepared in this ZIP: revised technical/security/research reports, actual traces/receipts/screenshots, English deck and narration/captions, full source, tests, Windows guide and Render preparation. The user must run real local Qwen validation, record the final real demo, confirm organizer contact/deadline/registration, review licenses/identity requirements, and explicitly authorize any GitHub push or official submission. No organizer email, upload, public deployment or bank operation has been performed.
+
+Never claim bank/provider partnership, real payments, bank-verified payee ownership, real KYC/AML clearance, external human peer validation, fundamental BPCE novelty, AP2 implementation, zero injection vulnerability, real LLM benchmark scores or official acceptance without the matching evidence.

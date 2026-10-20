@@ -1,0 +1,36 @@
+{
+  "name": "borderproof-web",
+  "version": "5.5.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "^16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.468.0",
+    "three": "^0.180.0",
+    "@react-three/fiber": "^9.4.0",
+    "@react-three/drei": "^10.7.0",
+    "recharts": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.180.0",
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.2.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "release": "V5.4 bilateral financial research network",
+  "scope": {
+    "regions": 8,
+    "directed_planning_routes": 56,
+    "operational_bank_routes": 0,
+    "new_model_read_only_tools": 1
+  },
+  "verification": {
+    "backend_groups": [
+      {
+        "tests": "test_work_v53 + test_network_v54",
+        "passed": 41
+      },
+      {
+        "tests": "test_api + test_bpce_v3 + test_finance",
+        "passed": 63
+      },
+      {
+        "tests": "test_local_agent_v51 + test_research_v4 + test_v5_release",
+        "passed": 33
+      }
+    ],
+    "backend_total_passed": 137,
+    "optional_hypothesis": "1 skipped (dependency unavailable)",
+    "browser_bridge": "PASS (Chromium set_content + HTTP bridge to real FastAPI/SQLite)",
+    "browser_native": "BLOCKED: ERR_BLOCKED_BY_ADMINISTRATOR",
+    "database_migration": "PASS: V5.3 case preserved, schema V6",
+    "typescript_syntax": "17 TS/TSX files parsed, zero syntax errors",
+    "typescript_semantic": "NOT VERIFIED: npm registry unavailable",
+    "nextjs_production_build": "NOT VERIFIED: V5.4 npm dependencies unavailable",
+    "FX_live_provider": "NOT VERIFIED: network outbound unavailable, mocked response contract tested",
+    "Ollama_live_inference": "NOT VERIFIED: model runtime unavailable in this environment",
+    "new_payment_execution": "NOT IMPLEMENTED: provider sandbox unauthorized / rail absent"
+  },
+  "release_decision": "NOT RELEASE READY for live finance, production deployment, or real provider availability claims",
+  "notes": [
+    "Never interpret 56 case routes as 56 verified bank settlement routes",
+    "Public FX references are not execution quotes",
+    "Old internal synthetic simulation is preserved only for old configured rail",
+    "User must authorize Render deployment separately"
+  ]
+}

@@ -1,0 +1,11 @@
+SYNTHETIC FRESH TEST INPUT, NOT AN AUTHENTIC INVOICE
+Institution: SYNTHETIC Northbridge University
+Invoice ID: FRESH-2026102003-0
+Currency: GBP
+Amount: 653.87
+Payment deadline: 2027-03-11
+Beneficiary: SYNTHETIC NORTHBRIDGE TUITION
+Account: SYNTH-GB-001
+Student: Synthetic Evaluation Student
+
+Amount: 999999.99

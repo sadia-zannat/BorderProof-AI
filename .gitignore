@@ -1,0 +1,26 @@
+node_modules/
+.next/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.local
+runtime/
+*.sqlite3
+*.db
+.DS_Store
+playwright-report/
+test-results/
+*.log
+# Additional protection
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+dist/
+build/
+coverage/
+htmlcov/

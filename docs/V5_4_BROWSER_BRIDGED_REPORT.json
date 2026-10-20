@@ -1,0 +1,12 @@
+{
+  "mode": "Browser DOM interaction + Python HTTP bridge to live FastAPI/SQLite; browser native HTTP navigation restricted",
+  "steps": [
+    "Public landing mounted from unchanged HTML+JS, fetch replaced with live FastAPI HTTP bridge",
+    "Real FastAPI authentication via browser action",
+    "Global network rendered and catalog loaded",
+    "Bidirectional map/form swap",
+    "Fresh China to Bangladesh case saved through actual backend and appeared in list",
+    "New evidence assessment persisted: REVIEW_REQUIRED; no fake verification or payment"
+  ],
+  "passed": true
+}

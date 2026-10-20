@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "schema_version": 6,
+  "legacy_record_preserved": "Existing V5.3 tuition",
+  "old_amount": "1543.21",
+  "source_currency_migrated": "BDT",
+  "destination_currency_migrated": "CAD",
+  "new_columns_present": true
+}

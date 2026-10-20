@@ -1,0 +1,148 @@
+{
+  "kind": "AUTHOR_DEFINED_SYNTHETIC_OFFLINE_POLICY_PROXIES",
+  "python": "3.12.14",
+  "original_reproduction": {
+    "cases": 300,
+    "holdout": 60,
+    "matches_generator": true
+  },
+  "new_cases": 96,
+  "new_split": {
+    "train": 48,
+    "development": 24,
+    "holdout": 24
+  },
+  "new_scenario_sha256": "8bc7a7ef72bb3ac4f86c626aa878433d0cf5936fd7a30c97d2bf3a86fd5cb7e0",
+  "overlapping_case_ids": 0,
+  "original_case_id_label_leak": "IDs expose failure family. Policies here do not read IDs. Future LLM inputs must omit case IDs.",
+  "split_limits": "Original development/holdout share generator templates, registry names, instruction variants. Neither split provides independent distributional generalization.",
+  "training": "Train split is reserved data, no learned model was trained.",
+  "full_agent_baselines": "NOT_MEASURED_NO_REACHABLE_LLM",
+  "real_provider_settlement": "NOT_MEASURED",
+  "human_evidence_attribution": "NOT_MEASURED",
+  "cost_usd": "NOT_MEASURED",
+  "confidence_interval_scope": "Wilson 95% intervals over these authored cases only, not real-world safety bounds",
+  "additional_holdout": {
+    "heuristic_assistant_proxy": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 6,
+        "unsafe_approved": 15
+      },
+      "unsafe_acceptance_interval_95": [
+        0.500432,
+        0.861863
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "tool_agent_proxy": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 12,
+        "unsafe_approved": 9
+      },
+      "unsafe_acceptance_interval_95": [
+        0.244697,
+        0.634538
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "static_approval_proxy": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "ap2_inspired_proxy": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "bpce_core_proxy": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "bpce_without_provenance": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "bpce_without_scope_binding": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    },
+    "bpce_without_injection_scan": {
+      "confusion": {
+        "safe_approved": 3,
+        "unsafe_blocked": 18,
+        "unsafe_approved": 3
+      },
+      "unsafe_acceptance_interval_95": [
+        0.049809,
+        0.346365
+      ],
+      "false_block_interval_95": [
+        0,
+        0.561506
+      ]
+    }
+  },
+  "rules_sha256": "523c40fce1880078c75bcd06ce3bb18feeef42ec69b74f5d7bc853c909f26d3f"
+}

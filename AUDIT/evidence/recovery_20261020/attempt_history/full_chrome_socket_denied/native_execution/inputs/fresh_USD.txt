@@ -1,0 +1,9 @@
+SYNTHETIC FRESH TEST INPUT, NOT AN AUTHENTIC INVOICE
+Institution: SYNTHETIC Lakefield Institute
+Invoice ID: FRESH-2026102001-1
+Currency: USD
+Amount: 124.18
+Payment deadline: 2027-03-12
+Beneficiary: SYNTHETIC LAKEFIELD BURSAR
+Account: SYNTH-US-001
+Student: Synthetic Evaluation Student

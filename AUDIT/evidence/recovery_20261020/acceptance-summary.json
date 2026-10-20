@@ -1,0 +1,72 @@
+{
+  "resumed_at_utc": "2026-10-20T02:08:21.500815+00:00",
+  "provenance": "RECOVERED_EXISTING_V5_3_NOT_RESTARTED_FROM_V5_2",
+  "backend": {
+    "passed": 130,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 62.553
+  },
+  "legacy_browser_bridge": {
+    "passed": 6,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 30.522
+  },
+  "native_http_and_browser": {
+    "status": "PASS",
+    "api_invoice_cases": 10,
+    "browser_surfaces": 2,
+    "locale_checks": 6,
+    "page_errors": 0,
+    "completed_simulated_transfers": 6,
+    "balanced_ledger_entries": 12,
+    "ledger_sum": "0.00",
+    "all_owner_receipts_after_final_restart": 6,
+    "browser_receipts_included": true
+  },
+  "ocr_api": {
+    "status": "PASS",
+    "invoice_cases": 10,
+    "engine_claim": "Actual local Tesseract text remains unverified"
+  },
+  "new_seeded_inputs": [
+    {
+      "run": "ocr_execution",
+      "seed": 2026102002,
+      "inputs": 10,
+      "sha256_overlap_with_pre_resume_shipped_inputs": 0
+    },
+    {
+      "run": "native_verified_execution",
+      "seed": 2026102005,
+      "inputs": 10,
+      "sha256_overlap_with_pre_resume_shipped_inputs": 0
+    }
+  ],
+  "next_typecheck": "PASS",
+  "lint": {
+    "errors": 0,
+    "warnings": 11
+  },
+  "next_production_build": "PASS",
+  "npm_production_audit_listed_vulnerabilities": 0,
+  "locale_catalogs": 16,
+  "source_files_equal_to_clean_tested_revision": 113,
+  "application_change_this_resume": "Native verification harness only: final restart plus per-owner receipt readback",
+  "historical_failures_retained": {
+    "initial_full_chrome_legacy_tests_failed": 6,
+    "native_full_chrome_launch": "FAIL_SOCKET_EPERM",
+    "new_restart_harness_first_attempt": "FAIL_WRONG_COLUMN_NAME_REPAIRED_AND_RERUN"
+  },
+  "live_qwen": "BLOCKED_CONNECTION_REFUSED_NO_INFERENCE",
+  "external_provider": "BLOCKED_NO_CREDENTIALS_OR_AUTHORIZATION",
+  "postgres_runtime": "BLOCKED_UNAVAILABLE_DDL_COMPILE_ONLY_PASS",
+  "docker": "BLOCKED_UNAVAILABLE",
+  "windows_powershell": "BLOCKED_UNAVAILABLE",
+  "render": "LOCAL_CONFIG_PARSE_ONLY_NOT_DEPLOYED",
+  "local_demo_verdict": "READY_FOR_LOCAL_SIMULATION_DEMO",
+  "production_verdict": "NOT_RELEASE_READY"
+}

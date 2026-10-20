@@ -1,0 +1,8 @@
+{
+  "purpose": "SYNTHETIC DEMONSTRATION ONLY. No connection to universities or real banks; NOT proof of account ownership or regulatory eligibility.",
+  "entries": [
+    {"id":"TEST-UK-001","institution":"SYNTHETIC Northbridge University","beneficiary":"SYNTHETIC NORTHBRIDGE TUITION","account":"SYNTH-GB-001","country":"United Kingdom","currency":"GBP","source":"LOCAL_SYNTHETIC_FIXTURE"},
+    {"id":"TEST-US-001","institution":"SYNTHETIC Lakefield Institute","beneficiary":"SYNTHETIC LAKEFIELD BURSAR","account":"SYNTH-US-001","country":"United States","currency":"USD","source":"LOCAL_SYNTHETIC_FIXTURE"},
+    {"id":"TEST-CA-001","institution":"SYNTHETIC Maplewood College","beneficiary":"SYNTHETIC MAPLEWOOD FEES","account":"SYNTH-CA-001","country":"Canada","currency":"CAD","source":"LOCAL_SYNTHETIC_FIXTURE"}
+  ]
+}

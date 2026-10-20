@@ -1,0 +1,52 @@
+1
+00:00:00,000 --> 00:00:20,000
+We are FinVeritas. This is BorderProof AI,
+an evidence-first tuition-payment assistant.
+All data is synthetic. No real money moves.
+
+2
+00:00:20,000 --> 00:00:45,000
+Invoices, beneficiaries, quotes and approvals
+can contradict or change.
+An AI answer is not financial authorization.
+
+3
+00:00:45,000 --> 00:01:15,000
+We extract structured details from a synthetic invoice.
+Extraction is not bank verification.
+
+4
+00:01:15,000 --> 00:01:45,000
+The local investigation compares evidence and
+synthetic beneficiary records.
+Quotes are not market-executable prices.
+
+5
+00:01:45,000 --> 00:02:15,000
+The student grants transaction-specific consent.
+The simulator checks the evidence again
+and records an internal test receipt.
+
+6
+00:02:15,000 --> 00:02:45,000
+BPCE checks dependency changes and stale approval.
+Reviewer and auditor views support oversight.
+
+7
+00:02:45,000 --> 00:03:10,000
+The planner gives read-only next steps.
+Evidence export is self-hashed, not bank-signed.
+Local support cannot initiate refunds.
+
+8
+00:03:10,000 --> 00:03:45,000
+The 300-case synthetic benchmark includes 60 holdout cases.
+Our BPCE rule proxy accepted 5 of 48 unsafe cases
+and rejected 3 of 12 legitimate cases.
+These are not real LLM-agent results.
+
+9
+00:03:45,000 --> 00:04:15,000
+This is a measurable internal finance simulator,
+not a live payment product.
+Thank you from FinVeritas.

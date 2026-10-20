@@ -1,0 +1,9 @@
+{
+  "yaml_parse": "PASS",
+  "local_structural_checks": "PASS",
+  "render_platform_validation": "NOT_RUN",
+  "deployed": false,
+  "docker": "UNAVAILABLE",
+  "postgresql_runtime": "UNAVAILABLE",
+  "durable_cloud_upload_storage": "NOT_IMPLEMENTED"
+}

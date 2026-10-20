@@ -1,0 +1,7 @@
+# Model and data card
+
+Model interface: Ollama /api/chat, configured qwen3:4b, temperature 0.1, num_predict 500, think=false, stream=false. No model weights are shipped. No model fine-tuning or actual inference was performed in Work. Runtime availability/identity/model digest must be captured by the user-local harness. Model license and distribution terms must be checked with the installed model's official record before redistributing weights; this project does not redistribute them.
+
+Data: original 300-case StuPay-IntegrityBench with team-authored labels, plus 96 Work-authored frozen offline challenge rows and fresh synthetic labelled invoices. No authentic bank statements, passports, real student PII or independent external financial labels are used. Train/development/holdout partitions exist for the additional set but no learned model trains here. The original holdout shares templates with development and is unsuitable for a strong generalization claim.
+
+Expected failures: unsupported document layout/language, OCR ambiguity, incomplete evidence, unrecognized institutions, unverified external ownership, obfuscated injection and model hallucinations. The rule proxy's measured unsafe acceptances and false blocks remain documented. Parser confidence values are fixed heuristic tags, not validation scores. Human answer/citation quality and financial field efficacy are not measured.

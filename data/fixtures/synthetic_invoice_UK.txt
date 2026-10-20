@@ -1,0 +1,9 @@
+SYNTHETIC DEMONSTRATION INVOICE — NOT A REAL FINANCIAL DOCUMENT
+Institution: SYNTHETIC Northbridge University
+Invoice ID: DEMO-2026-0042
+Currency: GBP
+Amount: 12500.00
+Payment deadline: 2027-02-15
+Beneficiary: SYNTHETIC NORTHBRIDGE TUITION
+Account: SYNTH-GB-001
+Student: SYNTHETIC Student

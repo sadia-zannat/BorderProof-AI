@@ -1,0 +1,37 @@
+{
+  "backend": {
+    "passed": 130,
+    "failed": 0,
+    "skipped": 0,
+    "property_test_functions": 3,
+    "deprecation_warnings": 1
+  },
+  "legacy_browser_bridge": {
+    "passed": 6,
+    "failed": 0
+  },
+  "native_browsers": {
+    "surfaces": 2,
+    "locale_checks": 6,
+    "new_invoice_inputs": 10,
+    "page_errors": 0,
+    "status": "PASS"
+  },
+  "ocr_native_api": "PASS",
+  "typescript": "PASS",
+  "lint": {
+    "status": "PASS",
+    "errors": 0,
+    "warnings": 11
+  },
+  "next_production_build": "PASS",
+  "native_production_start": "PASS",
+  "sqlite_migration_and_restart": "PASS",
+  "live_qwen": "BLOCKED_CONNECTION_REFUSED_PENDING_USER_LOCAL",
+  "external_sandbox": "BLOCKED_NO_CREDENTIALS_OR_AUTHORIZATION",
+  "docker": "NOT_RUN_UNAVAILABLE",
+  "postgres_runtime": "NOT_RUN_UNAVAILABLE",
+  "powershell_windows_execution": "NOT_RUN_UNAVAILABLE",
+  "render_platform_validation": "NOT_RUN",
+  "render_deployment": "NOT_PERFORMED"
+}

@@ -1,0 +1,9 @@
+SYNTHETIC FRESH TEST INPUT, NOT AN AUTHENTIC INVOICE
+Institution: SYNTHETIC Maplewood College
+Invoice ID: FRESH-2026102004-2
+Currency: CAD
+Amount: 749.74
+Payment deadline: 2027-03-13
+Beneficiary: SYNTHETIC MAPLEWOOD FEES
+Account: SYNTH-CA-001
+Student: Synthetic Evaluation Student

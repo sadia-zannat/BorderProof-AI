@@ -1,0 +1,265 @@
+"""Reproducible native HTTP + browser acceptance, using synthetic accounts/documents.
+
+No fetch interception or browser-to-Python bridge. Starts FastAPI and optionally
+the built Next.js application, uploads fresh files, checks DB/ledger after restart.
+Requires requirements-dev.txt, reportlab, Playwright and an installed Chromium.
+"""
+from __future__ import annotations
+import argparse,hashlib,json,os,secrets,shutil,sqlite3,subprocess,sys,tempfile,time
+from datetime import datetime,timezone
+from decimal import Decimal
+from pathlib import Path
+import httpx
+from generate_fresh_invoices import generate
+
+ROOT=Path(__file__).resolve().parents[1]
+def run(args):
+    out=Path(args.output).resolve();out.mkdir(parents=True,exist_ok=True)
+    scenes=generate(out/'inputs',args.seed)
+    report={'kind':'NATIVE_HTTP_AND_BROWSER_NO_BRIDGE','started_at':datetime.now(timezone.utc).isoformat(),
+        'api_cases':[],'browser':[],'network':[],'failures':[],'model_inference':'NOT_REQUESTED_EXCEPT_REAL_UNAVAILABLE_NEGATIVE_PROBE'}
+    api_url='http://127.0.0.1:8000';web_url='http://127.0.0.1:3000'
+    with tempfile.TemporaryDirectory(prefix='bp-native-') as temp:
+        db=Path(temp)/'native.sqlite3';uploads=Path(temp)/'uploads'
+        env={**os.environ,'DATABASE_URL':'sqlite:///'+db.as_posix(),'PRIVATE_UPLOAD_DIR':str(uploads),
+            'APP_ENV':'development','ENABLE_DEMO_SEED':'0','ENABLE_LOCAL_SIGNUP':'1','OLLAMA_BASE_URL':'http://127.0.0.1:9',
+            'OLLAMA_ENABLED':'1','ENABLE_LOCAL_OCR':'1' if args.enable_ocr else '0','COOKIE_SECURE':'0','NEXT_TELEMETRY_DISABLED':'1',
+            'ALLOWED_ORIGINS':api_url+','+web_url,'API_INTERNAL_URL':api_url}
+        processes=[];handles=[]
+        def launch_api():
+            handle=(out/'uvicorn.log').open('a');handles.append(handle)
+            p=subprocess.Popen([sys.executable,'-m','uvicorn','app.main:app','--app-dir','services/api','--host','127.0.0.1','--port','8000'],cwd=ROOT,env=env,stdout=handle,stderr=subprocess.STDOUT);processes.append(p)
+            wait(api_url+'/api/v1/health');return p
+        def stop(p):
+            p.terminate()
+            try:p.wait(timeout=8)
+            except subprocess.TimeoutExpired:p.kill();p.wait()
+        def wait(url):
+            with httpx.Client(trust_env=False,timeout=.5) as c:
+                for _ in range(120):
+                    try:
+                        if c.get(url).status_code==200:return
+                    except httpx.HTTPError:pass
+                    time.sleep(.15)
+            raise RuntimeError('Startup failed: '+url)
+        try:
+            server=launch_api()
+            client=httpx.Client(base_url=api_url,trust_env=False,timeout=15)
+            nonce=secrets.token_hex(5);email='wire-'+nonce+'@example.test';password=secrets.token_urlsafe(24)
+            def post(path,body=None,expected=200):
+                r=client.post('/api/v1'+path,json=body);assert r.status_code==expected,(path,r.status_code,r.text[:200]);return r.json()
+            post('/auth/register',{'name':'Synthetic Native Test','email':email,'password':password},201)
+            login=post('/auth/login',{'email':email,'password':password});client.headers['X-CSRF-Token']=login['csrf_token']
+            completed=[]
+            for scene in scenes:
+                c=post('/cases',{'title':scene['id']+' '+nonce,**{k:scene[k] for k in ('institution','destination_country','amount','currency')}},201);cid=c['id']
+                f=out/'inputs'/scene['file'];r=client.post('/api/v1/documents',data={'case_id':cid},files={'file':(f.name,f.read_bytes(),'application/octet-stream')});assert r.status_code==201,r.text
+                d=r.json();assert d['sha256']==hashlib.sha256(f.read_bytes()).hexdigest()
+                down=client.get('/api/v1/documents/'+d['id']+'/download');assert down.content==f.read_bytes()
+                x=client.post(f'/api/v1/cases/{cid}/documents/{d["id"]}/extract')
+                row={'id':scene['id'],'case_id':cid,'document_sha256':d['sha256'],'extract_http':x.status_code}
+                if scene['id']=='FRESH-SCAN':
+                    if args.enable_ocr:
+                        assert x.status_code==200,x.text
+                        assert x.json()['engine']=='TESSERACT_LOCAL_OCR_UNVERIFIED'
+                        assert x.json()['fields']['amount']['value']==scene['amount']
+                        row['extraction']=x.json();row['state']='REAL_LOCAL_OCR_UNVERIFIED'
+                    else:
+                        assert x.status_code==503 and 'OCR disabled' in x.text
+                        row['state']='OCR_DISABLED'
+                    report['api_cases'].append(row);continue
+                assert x.status_code==200,x.text;row['extraction']=x.json()
+                inv=post(f'/cases/{cid}/investigations',{'extraction_id':x.json()['id']});row['investigation']=inv
+                expected=scene['expected']
+                if expected=='QUOTE_BLOCKED':
+                    r=client.post(f'/api/v1/cases/{cid}/quotes',json={'investigation_id':inv['id']});assert r.status_code==409,r.text
+                    row['quote_http']=409
+                elif expected!='SANDBOX_FIXTURE_MATCH':
+                    assert inv['state']==expected,inv
+                    assert client.post(f'/api/v1/cases/{cid}/quotes',json={'investigation_id':inv['id']}).status_code==409
+                else:
+                    assert inv['state']==expected
+                    q=post(f'/cases/{cid}/quotes',{'investigation_id':inv['id']})
+                    a=post(f'/cases/{cid}/approvals',{'quote_id':q['id'],'confirmation':'I AUTHORIZE THIS INTERNAL SANDBOX PAYMENT'})
+                    body={'approval_id':a['id'],'idempotency_key':'native-'+scene['id']+'-'+nonce,'simulated_outcome':'SUCCESS'}
+                    t=post(f'/cases/{cid}/transfers',body);assert t['status']=='COMPLETED'
+                    assert post(f'/cases/{cid}/transfers',body)['id']==t['id']
+                    receipt=client.get('/api/v1/transfers/'+t['id']+'/evidence-export').json()
+                    assert len(receipt['evidence']['ledger'])==2
+                    assert sum(Decimal(e['signed_amount']) for e in receipt['evidence']['ledger'])==0
+                    (out/(scene['id']+'_receipt.json')).write_text(json.dumps(receipt,indent=2))
+                    completed.append((cid,t['id']));row['transfer']=t
+                report['api_cases'].append(row)
+            # A real connection-refused model error, no fabricated response.
+            no_ai=client.post(f'/api/v1/cases/{completed[0][0]}/agent/chat',json={'message':'Inspect this fresh synthetic case.'})
+            assert no_ai.status_code==503,no_ai.text
+            report['unavailable_model']={'http_status':503,'detail':no_ai.json()['detail']}
+            fx=client.get('/api/v1/finance/reference-fx?base=EUR')
+            assert fx.status_code in (200,503)
+            report['public_fx']={'http_status':fx.status_code,'response':fx.json()}
+            before=client.get('/api/v1/finance/account').json()['balance']
+            stop(server);server=launch_api()
+            assert client.get('/api/v1/finance/account').json()['balance']==before
+            assert all(client.get('/api/v1/transfers/'+t+'/receipt').json()['transfer']['status']=='COMPLETED' for _,t in completed)
+            report['restart_persistence']={'verified':True,'completed_transfers':len(completed),'balance':before}
+            if args.browser:
+                h=(out/'next-start.log').open('w');handles.append(h)
+                p=subprocess.Popen([shutil.which('npm.cmd' if os.name=='nt' else 'npm'),'run','start','--','--port','3000'],cwd=ROOT/'apps/web',env=env,stdout=h,stderr=subprocess.STDOUT);processes.append(p);wait(web_url)
+                from playwright.sync_api import sync_playwright
+                with sync_playwright() as pw:
+                    browser=pw.chromium.launch(headless=True,executable_path=os.getenv('BORDERPROOF_CHROMIUM') or None,args=['--no-sandbox','--disable-dev-shm-usage'])
+                    for variant,url in [('next',web_url),('preview',api_url+'/demo')]:
+                        context=browser.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce')
+                        page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+                        def response(r):
+                            if '/api/' in r.url:report['network'].append({'surface':variant,'path':r.url.split('/api/',1)[1],'status':r.status})
+                        page.on('response',response);page.goto(url);page.wait_for_load_state('networkidle')
+                        page.screenshot(path=str(out/f'{variant}_landing.png'),full_page=True)
+                        # New user created via this product's real registration form.
+                        page.goto(url+'/register' if variant=='next' else url+'#register');page.wait_for_load_state('networkidle')
+                        usermail=f'{variant}-{nonce}@example.test'
+                        page.get_by_label('Name',exact=True).fill('Synthetic Browser Student')
+                        page.get_by_label('Email',exact=True).fill(usermail);page.get_by_label('Password',exact=True).fill(password)
+                        page.get_by_role('button',name='Create account',exact=True).click()
+                        page.get_by_role('heading',name='Sign in',exact=True).wait_for()
+                        page.get_by_label('Email address' if variant=='next' else 'Email',exact=True).fill(usermail);page.get_by_label('Password',exact=True).fill(password)
+                        page.get_by_role('button',name='Sign in',exact=False).last.click()
+                        page.get_by_role('heading',name='Your workspace').wait_for()
+                        page.screenshot(path=str(out/f'{variant}_dashboard.png'),full_page=True)
+                        if variant=='next':native_next(page,out,scenes[0],url,nonce)
+                        else:native_preview(page,out,scenes[1],url,nonce)
+                        # Three real locale switches and mobile layouts on actual page.
+                        locale_selector=page.locator('header select').first
+                        for loc in ('zh-CN','bn-BD','en'):
+                            locale_selector.select_option(loc);page.wait_for_timeout(150);page.evaluate('document.fonts.ready')
+                            report['browser'].append({'surface':variant,'locale':loc,'visible_text_sample':page.locator('h1').first.inner_text()})
+                            page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(out/f'{variant}_{loc}_mobile.png'),full_page=True)
+                            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+2'),variant+' mobile overflow'
+                        assert not errors,errors
+                        report['browser'].append({'surface':variant,'page_errors':errors,'native_flow':'PASS'})
+                        context.close()
+                    browser.close()
+            with sqlite3.connect(db) as connection:
+                amounts=[Decimal(v[0]) for v in connection.execute('SELECT signed_amount FROM sandbox_ledger')]
+                report['db_evidence']={'transfers':connection.execute('SELECT status,count(*) FROM sandbox_transfers GROUP BY status').fetchall(),'ledger_entries':len(amounts),'ledger_sum':str(sum(amounts)),
+                    'accounts':connection.execute('SELECT balance,currency FROM sandbox_accounts').fetchall(),
+                    'audit_events':connection.execute('SELECT count(*) FROM audit_events').fetchone()[0]}
+                assert sum(amounts)==0
+                persisted_before={
+                    'transfers':connection.execute('SELECT id,case_id,status FROM sandbox_transfers ORDER BY id').fetchall(),
+                    'balances':connection.execute('SELECT user_id,balance,currency FROM sandbox_accounts ORDER BY user_id,currency').fetchall(),
+                    'ledger':connection.execute('SELECT transfer_id,account_id,currency,signed_amount FROM sandbox_ledger ORDER BY transfer_id,account_id').fetchall(),
+                }
+                receipt_owners=connection.execute('SELECT t.id,u.email FROM sandbox_transfers t JOIN payment_cases c ON c.id=t.case_id JOIN users u ON u.id=c.user_id ORDER BY t.id').fetchall()
+            # Verify the browser-created transfers as well as the API-created ones
+            # across a genuine process restart. Authenticate each synthetic owner;
+            # never bypass ownership checks or persist session/password material.
+            stop(server);server=launch_api()
+            verified_receipts=[]
+            for owner_email in sorted({email for _,email in receipt_owners}):
+                with httpx.Client(base_url=api_url,trust_env=False,timeout=15) as reader:
+                    signed=reader.post('/api/v1/auth/login',json={'email':owner_email,'password':password})
+                    assert signed.status_code==200,signed.text
+                    for transfer_id,email in receipt_owners:
+                        if email!=owner_email:continue
+                        response=reader.get('/api/v1/transfers/'+transfer_id+'/receipt')
+                        assert response.status_code==200,response.text
+                        transfer=response.json()['transfer']
+                        assert transfer['id']==transfer_id and transfer['status']=='COMPLETED'
+                        verified_receipts.append(transfer_id)
+                    logged_out=reader.post('/api/v1/auth/logout',headers={'X-CSRF-Token':signed.json()['csrf_token']})
+                    assert logged_out.status_code==200,logged_out.text
+            with sqlite3.connect(db) as connection:
+                persisted_after={
+                    'transfers':connection.execute('SELECT id,case_id,status FROM sandbox_transfers ORDER BY id').fetchall(),
+                    'balances':connection.execute('SELECT user_id,balance,currency FROM sandbox_accounts ORDER BY user_id,currency').fetchall(),
+                    'ledger':connection.execute('SELECT transfer_id,account_id,currency,signed_amount FROM sandbox_ledger ORDER BY transfer_id,account_id').fetchall(),
+                }
+            assert persisted_before==persisted_after,'Financial state changed across final restart/readback'
+            assert len(verified_receipts)==len(receipt_owners)
+            report['final_restart_persistence']={
+                'verified':True,'all_owner_receipts_read_back':len(verified_receipts),
+                'transfer_ids':verified_receipts,'balances_and_ledger_unchanged':True,
+                'includes_browser_created_transfers':bool(args.browser),
+            }
+            report['status']='PASS'
+        except Exception as exc:
+            import traceback
+            try:
+                if 'page' in locals():
+                    page.screenshot(path=str(out/'failure_browser.png'),full_page=True)
+                    (out/'failure_visible_text.txt').write_text(page.locator('body').inner_text(),encoding='utf8')
+            except Exception:pass
+            report['status']='FAIL';report['failures'].append(type(exc).__name__+': '+str(exc));traceback.print_exc()
+        finally:
+            for p in reversed(processes):
+                if p.poll() is None:stop(p)
+            for h in handles:h.close()
+    report['finished_at']=datetime.now(timezone.utc).isoformat();(out/'report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf8')
+    print(report['status'],'fresh API cases:',len(report['api_cases']),'browser records:',len(report['browser']))
+    return 0 if report['status']=='PASS' else 1
+
+def native_next(page,out,scene,url,nonce):
+    page.goto(url+'/cases');page.get_by_role('button',name='Create a case',exact=True).click()
+    page.get_by_label('Case title',exact=True).fill('Native browser '+nonce)
+    page.get_by_label('University / institution',exact=True).fill(scene['institution'])
+    page.get_by_label('Tuition amount',exact=True).fill(scene['amount'])
+    page.get_by_role('button',name='Save draft case',exact=True).click()
+    page.get_by_text('Native browser '+nonce,exact=True).first.wait_for()
+    page.goto(url+'/finance');page.get_by_label('Upload invoice',exact=True).set_input_files(str(out/'inputs'/scene['file']))
+    page.locator('button').filter(has_text='Upload invoice').click()
+    page.get_by_role('button',name='Extract structured fields',exact=True).click()
+    page.get_by_role('button',name='Check evidence',exact=True).click()
+    page.get_by_role('button',name='CAMPUS_SIM_A',exact=True).click()
+    page.on('dialog',lambda d:d.accept())
+    page.get_by_role('button',name='Approve this quote (simulation only)',exact=True).click()
+    page.get_by_role('button',name='Execute simulated payment',exact=True).click()
+    page.get_by_text('COMPLETED',exact=True).wait_for()
+    page.get_by_role('button',name='Decision receipt',exact=True).click()
+    page.get_by_text('NOT A BANK RECEIPT; internal test proof only.',exact=True).wait_for()
+    page.screenshot(path=str(out/'next_completed_receipt.png'),full_page=True)
+    page.locator('.fp-transfer').screenshot(path=str(out/'next_transfer_status.png'))
+    # The UI must disclose real Ollama unavailability.
+    page.goto(url+'/copilot');page.locator('textarea').fill('Inspect my newly created invoice.')
+    page.get_by_role('button',name='Investigate with local Qwen').click();page.get_by_role('alert').get_by_text('Local Ollama',exact=False).wait_for()
+    page.screenshot(path=str(out/'next_agent_unavailable.png'),full_page=True)
+    page.goto(url+'/cases');page.get_by_role('button',name='Create a case',exact=True).click()
+    page.get_by_label('Case title',exact=True).fill('Conflicting fresh invoice '+nonce)
+    page.get_by_label('University / institution',exact=True).fill(scene['institution'])
+    page.get_by_label('Tuition amount',exact=True).fill(scene['amount'])
+    page.get_by_role('button',name='Save draft case',exact=True).click()
+    page.get_by_text('Conflicting fresh invoice '+nonce,exact=True).first.wait_for()
+    page.goto(url+'/finance');page.get_by_label('Upload invoice',exact=True).set_input_files(str(out/'inputs'/'fresh_contradiction.txt'))
+    page.locator('button').filter(has_text='Upload invoice').click()
+    page.get_by_role('button',name='Extract structured fields',exact=True).click()
+    page.get_by_role('button',name='Check evidence',exact=True).click()
+    page.get_by_text('NEEDS CLARIFICATION',exact=True).first.wait_for()
+    assert page.get_by_role('button',name='CAMPUS_SIM_A',exact=True).is_disabled()
+    page.screenshot(path=str(out/'next_conflicting_invoice_blocked.png'),full_page=True)
+    page.locator('.fp-grid > .panel').nth(1).screenshot(path=str(out/'next_conflict_details.png'))
+
+def native_preview(page,out,scene,url,nonce):
+    page.get_by_role('button',name='Payment cases',exact=False).click()
+    page.get_by_role('button',name='New case',exact=False).click()
+    # Preserve real form semantics: selectors follow shipped standalone form names.
+    page.locator('input[name="title"]').fill('Native preview '+nonce)
+    page.locator('input[name="institution"]').fill(scene['institution'])
+    page.locator('select[name="destination_country"]').select_option(scene['destination_country'])
+    page.locator('input[name="amount"]').fill(scene['amount'])
+    page.locator('select[name="currency"]').select_option(scene['currency'])
+    page.get_by_role('button',name='Save draft',exact=False).click()
+    page.get_by_text('Native preview '+nonce,exact=True).first.wait_for()
+    page.get_by_role('button',name='Payment lab',exact=False).click()
+    page.locator('#fin-upload input[type="file"]').set_input_files(str(out/'inputs'/scene['file']))
+    page.get_by_role('button',name='Upload file',exact=False).click()
+    page.get_by_role('button',name='Extract fields',exact=False).click()
+    page.get_by_role('button',name='Investigate evidence',exact=False).click()
+    page.get_by_role('button',name='CAMPUS_SIM_A',exact=False).click()
+    page.on('dialog',lambda d:d.accept())
+    page.get_by_role('button',name='Authorize this simulation',exact=False).click()
+    page.get_by_role('button',name='Execute simulated transfer',exact=False).click()
+    page.get_by_text('COMPLETED',exact=True).wait_for()
+    page.screenshot(path=str(out/'preview_completed.png'),full_page=True)
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',default='AUDIT/evidence/native_execution');p.add_argument('--seed',type=int,default=20261021);p.add_argument('--browser',action='store_true');p.add_argument('--enable-ocr',action='store_true');raise SystemExit(run(p.parse_args()))

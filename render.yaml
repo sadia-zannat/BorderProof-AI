@@ -1,0 +1,45 @@
+# PREPARATION ONLY. Not deployed or validated by Render.
+# Persistence and cloud AI blockers: AUDIT/RENDER_READINESS.md.
+# No seeded credentials, local signup, remote model or paid plan is enabled here.
+services:
+  - type: web
+    name: borderproof-api-review
+    runtime: python
+    plan: free
+    autoDeployTrigger: "off"
+    buildCommand: pip install -r services/api/requirements-lock.txt
+    startCommand: python -m uvicorn app.main:app --app-dir services/api --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.14
+      - key: APP_ENV
+        value: production
+      - key: ENABLE_DEMO_SEED
+        value: "0"
+      - key: ENABLE_LOCAL_SIGNUP
+        value: "0"
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: OLLAMA_ENABLED
+        value: "0"
+      - key: ALLOW_EXTERNAL_LLM
+        value: "0"
+      - key: ALLOWED_ORIGINS
+        sync: false
+  - type: web
+    name: borderproof-web-review
+    runtime: node
+    plan: free
+    rootDir: apps/web
+    autoDeployTrigger: "off"
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start -- --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: API_INTERNAL_URL
+        sync: false
